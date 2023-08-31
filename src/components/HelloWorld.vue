@@ -1,5 +1,7 @@
 <template>
-  Привет, Сергей!
+  <div class="hello">
+    HELLO
+  </div>
 </template>
 
 <script>
