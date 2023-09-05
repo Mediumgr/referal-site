@@ -1,14 +1,18 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
   <div class="container">
-    <router-view/>
+    <MainPage></MainPage>
   </div>
 </template>
 
+<script setup>
+import MainPage from "./views/MainPage.vue";
+</script>
 <style>
+@font-face {
+  font-family: "GilRoy";
+  src: url("./assets/fonts/Gilroy-Medium.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,12 +24,9 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #fff;
-}
-
-@font-face {
-  font-family: "GilRoy";
-  src: url("./assets/fonts/Gilroy-Medium.ttf");
+  background: #0D0D0D;
+  font-family: "Gilroy";
+  font-style: normal;
 }
 
 .container {

@@ -1,8 +1,11 @@
 <template>
-  <div class="home">
+  <div>
     <TopBanner/>
     <RulesInfo/>
     <BonusSteps/>
+    <DetailedInfo/>
+    <SelectOption/>
+    <FeedbackSection/>
   </div>
 </template>
 
@@ -10,13 +13,19 @@
 import TopBanner from "@/components/TopBanner.vue";
 import RulesInfo from "@/components/RulesInfo.vue";
 import BonusSteps from "@/components/BonusSteps.vue";
+import DetailedInfo from "@/components/DetailedInfo.vue";
+import SelectOption from "@/components/SelectOption.vue";
+import FeedbackSection from "@/components/FeedbackSection.vue";
 
 export default {
   name: "MainPage",
   components: {
     TopBanner,
     RulesInfo,
-    BonusSteps
+    BonusSteps,
+    DetailedInfo,
+    SelectOption,
+    FeedbackSection
   },
 };
 </script>

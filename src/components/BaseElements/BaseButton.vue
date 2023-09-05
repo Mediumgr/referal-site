@@ -10,14 +10,13 @@
 .custom-btn {
   --border-width: 4px;
   --border-radius: 57px;
+  font-family: 'Gilroy';
   position: relative;
   justify-self: center;
   align-self: flex-start;
-  padding: 24px 48px;
+  padding: 23.5px 52px;
   color: #fff;
-  font-family: "GilRoy";
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-transform: uppercase;
@@ -45,7 +44,7 @@
       opacity: 0;
     }
     cursor: pointer;
-    background-image: radial-gradient(
+    background: radial-gradient(
         100% 100% at 0% 0%,
         #fc0 0%,
         #ff5940 50%,
