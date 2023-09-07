@@ -1,5 +1,5 @@
 <template>
-  <button class="custom-btn">
+  <button v-bind="$attrs">
     <slot></slot>
   </button>
 </template>
@@ -14,7 +14,6 @@
   position: relative;
   justify-self: center;
   align-self: flex-start;
-  padding: 23.5px 52px;
   color: #fff;
   font-size: 24px;
   font-weight: 500;

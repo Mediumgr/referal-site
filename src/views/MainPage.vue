@@ -2,10 +2,10 @@
   <div>
     <TopBanner/>
     <RulesInfo/>
-    <BonusSteps/>
+    <BonusSteps/> 
     <DetailedInfo/>
     <SelectOption/>
-    <FeedbackSection/>
+     <!--<FeedbackSection/> -->
   </div>
 </template>
 
@@ -15,7 +15,7 @@ import RulesInfo from "@/components/RulesInfo.vue";
 import BonusSteps from "@/components/BonusSteps.vue";
 import DetailedInfo from "@/components/DetailedInfo.vue";
 import SelectOption from "@/components/SelectOption.vue";
-import FeedbackSection from "@/components/FeedbackSection.vue";
+// import FeedbackSection from "@/components/FeedbackSection.vue";
 
 export default {
   name: "MainPage",
@@ -25,7 +25,7 @@ export default {
     BonusSteps,
     DetailedInfo,
     SelectOption,
-    FeedbackSection
+    // FeedbackSection
   },
 };
 </script>

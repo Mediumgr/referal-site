@@ -5,16 +5,16 @@
                 <div class="detailed-info_departments">
                     <h1 class="detailed-info_title">#куда_ищем</h1>
                     <div class="detailed-info_contents">
-                        <p class="detailed-info_text">Микросервисы СМБ</p>
-                        <p class="detailed-info_text">Образовательная платформа "Содружество"</p>
-                        <p class="detailed-info_text">Продуктовая фабрика РБ</p>
-                        <p class="detailed-info_text">Поддержка подразделений</p>
-                        <p class="detailed-info_text">Импортозамещение</p>
-                        <p class="detailed-info_text">Развитие экосистемы и небанк. сервисов</p>
-                        <p class="detailed-info_text">Развитие безрисковых продуктов ДБО КБ</p>
-                        <p class="detailed-info_text">Кредитный конвейер</p>
-                        <p class="detailed-info_text">Развитие ДБО</p>
-                        <p class="detailed-info_text">Проекты ОПК</p>
+                        <p class="detailed-info_text text_1">Микросервисы СМБ</p>
+                        <p class="detailed-info_text text_2">Образовательная платформа "Содружество"</p>
+                        <p class="detailed-info_text text_3">Продуктовая фабрика РБ</p>
+                        <p class="detailed-info_text text_4">Поддержка подразделений</p>
+                        <p class="detailed-info_text text_5">Импортозамещение</p>
+                        <p class="detailed-info_text text_6">Развитие экосистемы и небанк. сервисов</p>
+                        <p class="detailed-info_text text_7">Развитие безрисковых продуктов ДБО КБ</p>
+                        <p class="detailed-info_text text_8">Кредитный конвейер</p>
+                        <p class="detailed-info_text text_9">Развитие ДБО</p>
+                        <p class="detailed-info_text text_10">Проекты ОПК</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="detailed-images">
+        <div class="detailed-images" v-if="userWidth > 1919">
             <div class="detailed-images_colorIcons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="366" viewBox="0 0 400 366" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -797,90 +797,330 @@
     </div>
 </template>
 
+<script setup>
+import { ref, onMounted } from "vue";
+
+const userWidth = ref(null);
+
+onMounted(() => {
+    userWidth.value = document.documentElement.clientWidth;
+    window.addEventListener("resize", function () {
+        userWidth.value = document.documentElement.clientWidth;
+    });
+});
+</script>
+
 <style lang="scss" scoped>
 .detailed-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    padding: 0 calc(50% - 880px) 120px;
+
+    @media screen and (min-width: 320px) {
+        padding: 0 calc(50% - 155px) 40px;
+    }
+
+    @media screen and (min-width: 375px) {
+        padding: 0 calc(50% - 177px) 50px;
+    }
+
+    @media screen and (min-width: 390px) {
+        padding: 0 calc(50% - 187px) 60px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        padding: 0 calc(50% - 472px) 100px;
+    }
+
+    @media screen and (min-width: 1920px) {
+        padding: 0 calc(50% - 880px) 120px;
+    }
 }
 
 .detailed-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-direction: column;
-    height: 848px;
-    width: 1320px;
+    justify-content: space-between;
+
+    @media screen and (min-width: 320px) {
+        row-gap: 22px;
+    }
+
+    @media screen and (min-width: 390px) {
+        width: 373px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 944px;
+        row-gap: 40px;
+    }
+
+    @media screen and (min-width: 1920px) {
+        width: 1320px;
+        height: 848px;
+    }
 
     &_departments_block {
-        border-radius: 100px 100px 1px 100px;
         background: #fff;
-        height: 366px;
+
+        @media screen and (min-width: 320px) {
+            min-height: 334px;
+            width: 310px;
+            padding: 16px 7px 16px;
+            border-radius: 20px 20px 1px 20px;
+        }
+
+        @media screen and (min-width: 375px) {
+            width: auto;
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 944px;
+            border-radius: 60px 60px 1px 60px;
+            padding: 40px 17px 40px 30px;
+        }
+
+        @media screen and (min-width: 1920px) {
+            width: 1320px;
+            padding: 40px 60px 40px;
+            border-radius: 100px 100px 1px 100px;
+        }
     }
 
     &_professions_block {
-        border-radius: 100px 1px 100px 100px;
         background: #fff;
-        height: 442px;
+
+        @media screen and (min-width: 320px) {
+            height: auto;
+            padding: 16px 7px 16px;
+            border-radius: 20px 1px 20px 20px;
+        }
+
+        @media screen and (min-width: 390px) {
+            height: 674px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            height: 440px;
+            border-radius: 60px 1px 60px 60px;
+            padding: 40px 43px 0 40px;
+        }
+
+        @media screen and (min-width: 1920px) {
+            height: auto;
+            padding: 40px 60px 27px;
+            border-radius: 100px 1px 100px 100px;
+        }
     }
 
     &_column {
-        width: 585px;
+        @media screen and (min-width: 390px) {
+            width: 358px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 418px;
+        }
+
+        @media screen and (min-width: 1920px) {
+            width: 585px;
+        }
     }
 
     &_title {
         color: #111;
-        font-size: 48px;
         font-weight: 700;
         line-height: normal;
-        padding: 35px 60px 25px;
-    }
 
-    &_professions {
-        height: inherit;
-    }
+        @media screen and (min-width: 320px) {
+            font-size: 24px;
+            padding-left: 8px;
+        }
 
-    &_departments {
-        height: inherit;
+        @media screen and (min-width: 1024px) {
+            font-size: 32px;
+            padding: 0;
+        }
+
+        @media screen and (min-width: 1920px) {
+            font-size: 48px;
+        }
     }
 
     &_contents {
-        display: flex;
-        flex-wrap: wrap;
-        justify-items: center;
-        align-items: center;
-        row-gap: 25px;
-        column-gap: 10px;
-        padding: 0 60px;
+        @media screen and (min-width: 320px) {
+            display: grid;
+            justify-items: start;
+            row-gap: 12px;
+            column-gap: 8px;
+            padding-top: 12px;
+            grid-template-areas:
+                'text_1  text_8'
+                'text_2  text_2'
+                'text_4  text_9'
+                'text_5  text_10'
+                'text_7  text_7'
+                'text_3  text_3'
+                'text_6  text_6'
+            ;
+        }
+
+        @media screen and (min-width: 1024px) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-items: center;
+            align-items: center;
+            row-gap: 24px;
+            column-gap: 12px;
+            padding-top: 32px;
+        }
+
+        @media screen and (min-width: 1920px) {
+            padding-top: 21px;
+        }
     }
 
     &_text {
         color: #1b232f;
-        font-size: 24px;
-        font-weight: 400;
         line-height: normal;
-        padding: 12px;
-        border-radius: 39px;
         background: #f5f5f5;
+        font-weight: 400;
+
+        &.text_1 {
+            grid-area: text_1;
+        }
+
+        &.text_2 {
+            grid-area: text_2;
+        }
+
+        &.text_3 {
+            grid-area: text_3;
+        }
+
+        &.text_4 {
+            grid-area: text_4;
+            white-space: nowrap;
+        }
+
+        &.text_5 {
+            grid-area: text_5;
+        }
+
+        &.text_6 {
+            grid-area: text_6;
+        }
+
+        &.text_7 {
+            grid-area: text_7;
+        }
+
+        &.text_8 {
+            grid-area: text_8;
+
+            @media screen and (min-width: 320px) {
+                white-space: nowrap;
+                position: relative;
+                left: -49px;
+            }
+
+            @media screen and (min-width: 1024px) {
+                white-space: normal;
+                position: static;
+                left: 0;
+            }
+        }
+
+        &.text_9 {
+            grid-area: text_9;
+
+            @media screen and (min-width: 320px) {
+                position: relative;
+                left: 4px;
+            }
+
+            @media screen and (min-width: 1024px) {
+                position: static;
+                left: 0;
+            }
+        }
+
+        &.text_10 {
+            grid-area: text_10;
+
+            @media screen and (min-width: 320px) {
+                position: relative;
+                left: -51px;
+            }
+
+            @media screen and (min-width: 1024px) {
+                position: static;
+                left: 0;
+            }
+        }
+
+        @media screen and (min-width: 320px) {
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 13px;
+            height: fit-content;
+        }
+
+        @media screen and (min-width: 390px) {
+            font-size: 16px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            border-radius: 39px;
+            padding: 12px;
+            font-size: 18px;
+        }
+
+        @media screen and (min-width: 1920px) {
+            font-size: 24px;
+        }
     }
 
     &_description {
         display: flex;
         justify-items: center;
-        column-gap: 30px;
-        padding: 0 60px 0;
+
+        @media screen and (min-width: 320px) {
+            flex-direction: column;
+            padding-top: 12px
+        }
+
+        @media screen and (min-width: 1024px) {
+            padding-top: 32px;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        @media screen and (min-width: 1920px) {
+            padding-top: 23px;
+        }
     }
 
     &_list {
         color: #1b232f;
-        font-size: 20px;
         font-weight: 400;
         line-height: normal;
+        padding-bottom: 13px;
 
-        &:not(:last-child) {
-            padding-bottom: 16px;
+        @media screen and (min-width: 320px) {
+            font-size: 13px;
+        }
+
+        @media screen and (min-width: 320px) {
+            font-size: 16px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            font-size: 18px;
+        }
+
+        @media screen and (min-width: 1920px) {
+            font-size: 20px;
         }
     }
 }

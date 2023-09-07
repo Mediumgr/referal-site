@@ -4,8 +4,8 @@
     <div class="wrapper-dropdown" v-for="(n, index) in data" :key="n" @click.stop="showHiddenText(index)">
       <div class="wrapper-dropdown_select">
         <p class="wrapper-dropdown_title">{{ data[index].title }}</p>
-        <svg :class="['wrapper-dropdown_cross', checked ? 'active' : '']" xmlns="http://www.w3.org/2000/svg" width="40"
-          height="40" viewBox="0 0 40 40" fill="none">
+        <svg :class="['wrapper-dropdown_cross', checked[index] ? 'active' : '']" xmlns="http://www.w3.org/2000/svg"
+          width="40" height="40" viewBox="0 0 40 40" fill="none">
           <circle cx="20" cy="20" r="20" fill="#D9D9D9" />
           <path
             d="M18.72 12.16C18.72 12.0716 18.7916 12 18.88 12H21.12C21.2084 12 21.28 12.0716 21.28 12.16V27.84C21.28 27.9284 21.2084 28 21.12 28H18.88C18.7916 28 18.72 27.9284 18.72 27.84V12.16Z"
@@ -29,7 +29,7 @@ import { ref } from "vue";
 
 const hiddenWrapper = ref(null);
 const hiddenText = ref(null);
-const checked = ref(false);
+const checked = ref({});
 const data = ref([
   {
     title: "Какие этапы отбора нужно пройти моему другу?",
@@ -58,8 +58,12 @@ const data = ref([
   },
 ]);
 
+for (let [idx] of Object.entries(data.value)) {
+  checked.value[idx] = false;
+}
+
 const showHiddenText = (index) => {
-  checked.value = !checked.value;
+  checked.value[index] = !checked.value[index];
   let hiddenNode = hiddenWrapper.value[index];
   if (hiddenNode.clientHeight) {
     hiddenNode.style.height = 0;
@@ -73,22 +77,54 @@ const showHiddenText = (index) => {
 
 <style lang="scss" scoped>
 .section {
-  padding: 0 calc(50% - 880px) 120px;
+  @media screen and (min-width: 320px) {
+    padding: 0 calc(50% - 155px) 40px;
+  }
+
+  @media screen and (min-width: 375px) {
+    padding: 0 calc(50% - 177px) 60px;
+  }
+
+  @media screen and (min-width: 390px) {
+    padding: 0 calc(50% - 187px) 60px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 calc(50% - 472px) 100px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    padding: 0 calc(50% - 880px) 120px;
+  }
 
   &_title {
     color: #fff;
-    font-size: 100px;
     font-weight: 700;
     line-height: normal;
-    padding-bottom: 80px;
+
+    @media screen and (min-width: 320px) {
+      font-size: 30px;
+      padding-bottom: 10px;
+    }
+
+    @media screen and (min-width: 390px) {
+      font-size: 32px;
+      padding-bottom: 12px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 60px;
+      padding-bottom: 60px;
+    }
+
+    @media screen and (min-width: 1920px) {
+      font-size: 100px;
+      padding-bottom: 80px;
+    }
   }
 }
 
 .wrapper-dropdown {
-  width: 1760px;
-  min-height: 88px;
-  padding: 4px 24px;
-  border-radius: 12px;
   background: #fff;
   cursor: pointer;
   outline: none;
@@ -97,26 +133,66 @@ const showHiddenText = (index) => {
     margin-bottom: 4px;
   }
 
+  @media screen and (min-width: 320px) {
+    border-radius: 8px;
+    padding: 2px 12px 2px 12px;
+  }
+
+  @media screen and (min-width: 390px) {
+    border-radius: 8px;
+    padding: 2px 16px 2px 16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 2px 30px 2px 24px;
+    border-radius: 12px;
+  }
+
   &_select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+
+    @media screen and (min-width: 320px) {
+      display: grid;
+      grid-template-columns: 1fr 40px;
+    }
+
   }
 
   &_title {
     display: flex;
     align-items: center;
-    font-size: 32px;
     font-style: normal;
     font-weight: 600;
-    line-height: 60px;
+
+    @media screen and (min-width: 320px) {
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: 375px) {
+      font-size: 14px;
+    }
+
+    @media screen and (min-width: 390px) {
+      font-size: 16px;
+      line-height: 16px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    @media screen and (min-width: 1920px) {
+      font-size: 32px;
+      line-height: 60px;
+    }
   }
 
   &_cross {
     display: flex;
     align-items: center;
-    margin: 0 10px;
     transform: rotate(0deg);
     transition: transform 0.5s;
 
@@ -126,19 +202,42 @@ const showHiddenText = (index) => {
   }
 
   &_hidden {
-    border-radius: 0 0 12px 12px;
-    padding-right: 50px;
     background: #fff;
     overflow: hidden;
     height: 0;
     transition: height .5s;
+
+    @media screen and (min-width: 1920px) {
+      padding-right: 50px;
+    }
   }
 
   &_text {
-    font-size: 32px;
     font-style: normal;
-    line-height: 35px;
     font-weight: normal;
+
+    @media screen and (min-width: 320px) {
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: 375px) {
+      font-size: 14px;
+    }
+
+    @media screen and (min-width: 390px) {
+      font-size: 16px;
+      line-height: 16px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    @media screen and (min-width: 1920px) {
+      font-size: 32px;
+      line-height: 35px;
+    }
   }
 
 }
