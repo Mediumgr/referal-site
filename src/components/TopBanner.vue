@@ -1,7 +1,7 @@
 <template>
   <div class="top-banner">
     <img class="top-banner_logoImage" src="../assets/img/logo.png" alt="logo" />
-    <h1 class="top-banner_text">Рекомендуй друга в ит получи</h1>
+    <h1 class="top-banner_text">Рекомендуй друга в&nbsp;ит&nbsp;получи</h1>
     <img class="top-banner_arrowImage" src="../assets/img/rightArrow.png" alt="logo" />
     <div class="top-banner_costs">
       <h1 class="top-banner_price">100 000</h1>

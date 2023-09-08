@@ -1,43 +1,30 @@
 <template>
   <section class="section">
-    <h1 class="title">6 шагов для получения бонуса</h1>
+    <h1 class="title">6&nbsp;шагов для получения бонуса</h1>
     <div class="section-steps">
       <div class="step stepOne">
         <h1 class="digit">1</h1>
-        <p class="text">
-          Ты (рекомендатель) и твой друг (кандидат) заполняете формы
-        </p>
+        <p class="text">Ты&nbsp;(рекомендатель) и&nbsp;твой друг (кандидат) заполняете формы</p>
       </div>
       <div class="step stepTwo">
         <h1 class="digit">2</h1>
-        <p class="text">Вам на электронную почту приходит подтверждение</p>
+        <p class="text">Вам на&nbsp;электронную почту приходит подтверждение</p>
       </div>
       <div class="step stepThree">
         <h1 class="digit">3</h1>
-        <p class="text">
-          Заявки рассматриваются <br />
-          до 5 рабочих дней
-        </p>
+        <p class="text">Заявки рассматриваются до&nbsp;5&nbsp;рабочих дней</p>
       </div>
       <div class="step stepSix">
         <h1 class="digit">6</h1>
-        <p class="text">
-          В течение 5 рабочих дней после подписания договора ты получаешь
-          выплату
-        </p>
+        <p class="text">В&nbsp;течение 5&nbsp;рабочих дней после подписания договора ты&nbsp;получаешь выплату</p>
       </div>
       <div class="step stepFive">
         <h1 class="digit">5</h1>
-        <p class="text">
-          Когда друг пройдет испытательный срок, <br />
-          мы вышлем тебе электронный договор
-        </p>
+        <p class="text">Когда друг пройдет испытательный срок,мы вышлем тебе электронный договор</p>
       </div>
       <div class="step stepFour">
         <h1 class="digit">4</h1>
-        <p class="text">
-          После успешного собеседования, твой друг трудоустраивается
-        </p>
+        <p class="text">После успешного собеседования, твой друг трудоустраивается</p>
       </div>
     </div>
 

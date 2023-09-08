@@ -7,28 +7,25 @@
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-section_description">
-              Твой друг — ИТ-специалист <br />
-              с опытом работы более 2-х лет.
+              Твой друг&nbsp;&mdash; ИТ-специалист с&nbsp;опытом работы более 2-х лет.
             </p>
           </div>
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-section_description">
-              Твой друг, который не проходил собеседования в ПСБ в течение
-              <br />
-              6 месяцев до рекомендации.
+              Твой друг, который не&nbsp;проходил собеседования в&nbsp;ПСБ в&nbsp;течение 6&nbsp;месяцев до&nbsp;рекомендации.
             </p>
           </div>
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-section_description">
-              Ты сам не работал в ПСБ в течение 12 месяцев до рекомендации.
+              Ты&nbsp;сам не&nbsp;работал в&nbsp;ПСБ в&nbsp;течение 12&nbsp;месяцев до&nbsp;рекомендации.
             </p>
           </div>
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-section_description">
-              ИТ-рекрутер тоже может участвовать в программе на тех же условиях.
+              ИТ-рекрутер тоже может участвовать в&nbsp;программе на&nbsp;тех&nbsp;же условиях.
             </p>
           </div>
         </div>
@@ -43,28 +40,25 @@
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-content-description">
-              Его резюме попадет в базу кадрового резерва ПСБ Лаб и ПСБ.
+              Его резюме попадет в&nbsp;базу кадрового резерва ПСБ Лаб и&nbsp;ПСБ.
             </p>
           </div>
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-content-description">
-              Твой друг будет заниматься интересными проектами банковских
-              ИТ-систем.
+              Твой друг будет заниматься интересными проектами банковских ИТ-систем.
             </p>
           </div>
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-content-description">
-              Твой друг будет работать <br />
-              в аккредитованной ИТ-компании.
+              Твой друг будет работать в&nbsp;аккредитованной ИТ-компании.
             </p>
           </div>
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-content-description">
-              Ему нужно будет пройти всего <br />
-              1 техническое собеседование.
+              Ему нужно будет пройти всего 1&nbsp;техническое собеседование.
             </p>
           </div>
         </div>
@@ -153,7 +147,7 @@ import SvgCircle from "./UI/SvgCicrle.vue";
   &_content {
     display: grid;
 
-    @media screen and (min-width: 320px) {    
+    @media screen and (min-width: 320px) {
       grid-gap: 12px;
     }
 
