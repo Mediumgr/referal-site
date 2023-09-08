@@ -160,7 +160,7 @@ const colorLineMiddle = ref(null); */
   userWidth.value = document.documentElement.clientWidth;
   alert(userWidth.value);
   window.addEventListener("resize", function () {
-    userWidth.value = document.documentElement.clientWidth;
+    userWidth.value = slide
     console.log("userWidth.value", userWidth.value);
   });
 });
