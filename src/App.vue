@@ -27,6 +27,7 @@ body {
   background: #0D0D0D;
   font-family: "Gilroy";
   font-style: normal;
+  max-width: 100%;
 }
 
 .container {

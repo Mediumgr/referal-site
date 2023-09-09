@@ -1,11 +1,11 @@
 <template>
   <div>
-    <TopBanner/>
-    <RulesInfo/>
-    <BonusSteps/> 
-    <DetailedInfo/>
-    <SelectOption/>
-    <FeedbackSection/>
+    <TopBanner />
+    <RulesInfo />
+    <BonusSteps />
+    <DetailedInfo />
+    <SelectOption />
+    <FeedbackSection />
   </div>
 </template>
 

@@ -1,55 +1,11 @@
 <template>
     <div class="feedback">
         <h1 class="feedback-header">Сомневаетесь, работает ли программа?</h1>
-
         <h4 class="feedback-title">
             Посмотрите отзывы сотрудников о такой же программе внутри банка
         </h4>
-
-        <!-- <div class="feedback-wrapper">
-            <div class="feedback-person">
-                <img src="../assets/img/personone.png" alt="person" />
-
-                <h3 class="feedback-name">Екатерина Кармацкая</h3>
-
-                <p class="feedback-text">
-                    ПСБ мне рекомендовала коллега с&nbsp;предыдущего места работы.
-                    В&nbsp;итоге я&nbsp;устроилась по&nbsp;программе &quot;Приведи
-                    в&nbsp;ИТ&quot;, прошла испытательный срок и&nbsp;продолжаю работать
-                    в&nbsp;банке. Я&nbsp;рада работать в&nbsp;команде проверенных
-                    и&nbsp;надежных людей.
-                </p>
-            </div>
-
-            <div class="feedback-person">
-                <img src="../assets/img/persontwo.png" alt="person" />
-
-                <h3 class="feedback-name">Владимир Воротников</h3>
-
-                <p class="feedback-text">
-                    Я&nbsp;порекомендовал знакомого с&nbsp;прошлой работы
-                    по&nbsp;программе &quot;Приведи в&nbsp;ИТ&quot;. Он&nbsp;уже прошел
-                    испытательный срок и&nbsp;продолжает работать в&nbsp;банке. Выплату
-                    по&nbsp;программе получил.
-                </p>
-            </div>
-
-            <div class="feedback-person">
-                <img src="../assets/img/personthree.png" alt="person" />
-
-                <h3 class="feedback-name">Елизавета Воробьева</h3>
-
-                <p class="feedback-text">
-                    Я&nbsp;участвовала в&nbsp;программе &quot;Приведи в&nbsp;ИТ&quot;
-                    в&nbsp;качестве человека, кого привели. Это здорово, что коллеги могут
-                    привести компетентных сотрудников, которые помогут усилить команду
-                    банка. Мне нравится работать в&nbsp;команде банка, здесь
-                    у&nbsp;каждого амбициозные цели, мы&nbsp;заряжаем друг друга.
-                </p>
-            </div>
-        </div> -->
         <swiper-container init="false" ref="swiper">
-            <swiper-slide>
+            <swiper-slide class="swiper-slide">
                 <div class="feedback-person">
                     <div class="feedback-person">
                         <img src="../assets/img/personone.png" alt="person" />
@@ -94,6 +50,8 @@
 </template>
 
 <script setup>
+import { register } from 'swiper/element/bundle';
+register();
 import { onMounted, ref, unref } from 'vue';
 let swiper = ref(null)
 
@@ -121,7 +79,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-swiper-slide {
+.swiper-slide {
     border-radius: 20px;
 
     @media screen and (min-width: 320px) {
@@ -134,6 +92,8 @@ swiper-slide {
 }
 
 .feedback {
+    max-width: 100vw;
+
     @media screen and (min-width: 320px) {
         padding: 0 calc(50% - 155px) 40px;
     }
@@ -181,40 +141,6 @@ swiper-slide {
     }
 }
 
-/* .feedback-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @media screen and (min-width: 320px) {
-        width: 315px;
-        overflow: hidden;
-        grid-gap: 10px;
-        align-items: start;
-    }
-
-    @media screen and (min-width: 375px) {
-        width: 364px;
-    }
-
-    @media screen and (min-width: 390px) {
-        width: 382px;
-        grid-gap: 24px;
-    }
-
-    @media screen and (min-width: 425px) {
-        width: 399px;
-    }
-
-    @media screen and (min-width: 768px) {
-        width: 374px;
-    }
-
-    @media screen and (min-width: 1024px) {
-        width: auto;
-    }
-}
- */
 .feedback-person {
     display: flex;
     flex-direction: column;
@@ -231,17 +157,21 @@ swiper-slide {
     @media screen and (min-width: 320px) {
         border-radius: 20px;
         width: 290px;
-        min-height: 555px;
+        height: 555px;
     }
 
     @media screen and (min-width: 390px) {
         width: 298px;
-        min-height: 630px;
+        height: 630px;
+    }
+
+    @media screen and (min-width: 768px) {
+        height: 645px;
     }
 
     @media screen and (min-width: 1920px) {
         width: 576px;
-        min-height: 865px;
+        height: 865px;
         border-radius: 40px;
     }
 }
