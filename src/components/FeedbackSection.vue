@@ -1,11 +1,11 @@
 <template>
-    <div class="feedback">
+    <div class="feedback" ref="feedback">
         <h1 class="feedback-header">Сомневаетесь, работает ли программа?</h1>
         <h4 class="feedback-title">
             Посмотрите отзывы сотрудников о такой же программе внутри банка
         </h4>
         <swiper-container init="false" ref="swiper">
-            <swiper-slide class="swiper-slide">
+            <swiper-slide>
                 <div class="feedback-person">
                     <div class="feedback-person">
                         <img src="../assets/img/personone.png" alt="person" />
@@ -79,7 +79,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.swiper-slide {
+swiper-slide {
     border-radius: 20px;
 
     @media screen and (min-width: 320px) {
@@ -92,7 +92,7 @@ onMounted(() => {
 }
 
 .feedback {
-    max-width: 100vw;
+    max-width: 100%;
 
     @media screen and (min-width: 320px) {
         padding: 0 calc(50% - 155px) 40px;
@@ -157,7 +157,7 @@ onMounted(() => {
     @media screen and (min-width: 320px) {
         border-radius: 20px;
         width: 290px;
-        height: 555px;
+        height: 565px;
     }
 
     @media screen and (min-width: 390px) {
@@ -165,8 +165,8 @@ onMounted(() => {
         height: 630px;
     }
 
-    @media screen and (min-width: 768px) {
-        height: 645px;
+    @media screen and (min-width: 425px) {
+        height: 650px;
     }
 
     @media screen and (min-width: 1920px) {

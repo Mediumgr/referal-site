@@ -7,6 +7,7 @@
 <script setup>
 import MainPage from "./views/MainPage.vue";
 </script>
+
 <style>
 @font-face {
   font-family: "GilRoy";
@@ -18,6 +19,10 @@ import MainPage from "./views/MainPage.vue";
   padding: 0;
   box-sizing: border-box;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 
 body {
   display: flex;
@@ -27,7 +32,6 @@ body {
   background: #0D0D0D;
   font-family: "Gilroy";
   font-style: normal;
-  max-width: 100%;
 }
 
 .container {

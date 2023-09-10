@@ -186,6 +186,7 @@ onUpdated(() => {
 
 <style lang="scss" scoped>
 .section {
+  max-width: 100%;
   position: relative;
 
   @media screen and (min-width: 320px) {

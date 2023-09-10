@@ -77,6 +77,8 @@ const showHiddenText = (index) => {
 
 <style lang="scss" scoped>
 .section {
+  max-width: 100%;
+
   @media screen and (min-width: 320px) {
     padding: 0 calc(50% - 155px) 40px;
   }

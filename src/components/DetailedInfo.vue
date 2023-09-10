@@ -7,11 +7,11 @@
                     <div class="detailed-info_contents">
                         <p class="detailed-info_text text_1">Микросервисы СМБ</p>
                         <p class="detailed-info_text text_2">Образовательная платформа "Содружество"</p>
-                        <p class="detailed-info_text text_3">Продуктовая фабрика РБ</p>
+                        <p class="detailed-info_text text_3">Продуктовая фабрика&nbsp;РБ</p>
                         <p class="detailed-info_text text_4">Поддержка подразделений</p>
                         <p class="detailed-info_text text_5">Импортозамещение</p>
-                        <p class="detailed-info_text text_6">Развитие экосистемы и небанк. сервисов</p>
-                        <p class="detailed-info_text text_7">Развитие безрисковых продуктов ДБО КБ</p>
+                        <p class="detailed-info_text text_6">Развитие экосистемы и&nbsp;небанк. сервисов</p>
+                        <p class="detailed-info_text text_7">Развитие безрисковых продуктов ДБО&nbsp;КБ</p>
                         <p class="detailed-info_text text_8">Кредитный конвейер</p>
                         <p class="detailed-info_text text_9">Развитие ДБО</p>
                         <p class="detailed-info_text text_10">Проекты ОПК</p>
@@ -812,6 +812,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .detailed-container {
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -897,7 +898,7 @@ onMounted(() => {
         }
 
         @media screen and (min-width: 390px) {
-            height: 674px;
+            min-height: 674px;
         }
 
         @media screen and (min-width: 1024px) {
@@ -952,7 +953,7 @@ onMounted(() => {
             display: grid;
             justify-items: start;
             row-gap: 12px;
-            column-gap: 8px;
+            grid-template-columns: 1fr 103px;
             padding-top: 12px;
             grid-template-areas:
                 'text_1  text_8'
@@ -963,6 +964,14 @@ onMounted(() => {
                 'text_3  text_3'
                 'text_6  text_6'
             ;
+        }
+
+        @media screen and (min-width: 375px) {
+            grid-template-columns: 191px 103px;
+        }
+
+        @media screen and (min-width: 390px) {
+            grid-template-columns: 177px 181px;
         }
 
         @media screen and (min-width: 1024px) {
@@ -992,6 +1001,8 @@ onMounted(() => {
 
         &.text_2 {
             grid-area: text_2;
+            display: flex;
+            flex-wrap: nowrap;
         }
 
         &.text_3 {
@@ -1021,7 +1032,11 @@ onMounted(() => {
             @media screen and (min-width: 320px) {
                 white-space: nowrap;
                 position: relative;
-                left: -49px;
+                left: -44px;
+            }
+
+            @media screen and (min-width: 390px) {
+                left: 0;
             }
 
             @media screen and (min-width: 1024px) {
@@ -1034,9 +1049,9 @@ onMounted(() => {
         &.text_9 {
             grid-area: text_9;
 
-            @media screen and (min-width: 320px) {
+            @media screen and (min-width: 390px) {
                 position: relative;
-                left: 4px;
+                left: 58px;
             }
 
             @media screen and (min-width: 1024px) {
@@ -1050,7 +1065,11 @@ onMounted(() => {
 
             @media screen and (min-width: 320px) {
                 position: relative;
-                left: -51px;
+                left: -44px;
+            }
+
+            @media screen and (min-width: 390px) {
+                left: 0;
             }
 
             @media screen and (min-width: 1024px) {

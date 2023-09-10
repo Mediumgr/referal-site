@@ -15,7 +15,6 @@
   justify-self: center;
   align-self: flex-start;
   color: #fff;
-  font-size: 24px;
   font-weight: 500;
   line-height: normal;
   text-transform: uppercase;
@@ -24,6 +23,7 @@
   background-image: linear-gradient(165deg, #fc0 0%, #ff5940 15%, #7f40ff 60%);
   border: 0;
   z-index: 1;
+
   &::before {
     content: "";
     display: block;
@@ -38,18 +38,18 @@
     opacity: 1;
     transition: opacity 800ms ease-out;
   }
+
   &:hover {
     &::before {
       opacity: 0;
     }
+
     cursor: pointer;
-    background: radial-gradient(
-        100% 100% at 0% 0%,
-        #fc0 0%,
-        #ff5940 50%,
-        #7f40ff 100%
-      ),
-      #fff;
+    background: radial-gradient(100% 100% at 0% 0%,
+      #fc0 0%,
+      #ff5940 50%,
+      #7f40ff 100%),
+    #fff;
   }
 }
 </style>

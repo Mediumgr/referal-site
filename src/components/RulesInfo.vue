@@ -73,6 +73,7 @@ import SvgCircle from "./UI/SvgCicrle.vue";
 
 <style lang="scss" scoped>
 .info-rules {
+  max-width: 100%;
   @media screen and (min-width: 320px) {
     display: grid;
     grid-gap: 20px;

@@ -1,10 +1,10 @@
 <template>
   <div class="top-banner">
     <img class="top-banner_logoImage" src="../assets/img/logo.png" alt="logo" />
-    <h1 class="top-banner_text">Рекомендуй друга в&nbsp;ит&nbsp;получи</h1>
+    <h1 class="top-banner_text">Рекомендуй друга в ит получи</h1>
     <img class="top-banner_arrowImage" src="../assets/img/rightArrow.png" alt="logo" />
     <div class="top-banner_costs">
-      <h1 class="top-banner_price">100 000</h1>
+      <h1 class="top-banner_price">100&nbsp;000</h1>
       <img class="top-banner_image" src="../assets/img/rouble.png" alt="рублей" />
     </div>
     <img class="top-banner_psbLogoImage" src="../assets/img/psblogo.png" alt="logo" />
@@ -14,11 +14,12 @@
 </template>
 
 <script setup>
-import BaseButton from "./BaseElements/BaseButton.vue";
+import BaseButton from "./BaseElements/BaseButton.vue"; 
 </script>
 
 <style lang="scss" scoped>
 .top-banner {
+  max-width: 100%;
   display: grid;
   grid-template-columns: repeat(3, auto);
   height: auto;
@@ -39,10 +40,10 @@ import BaseButton from "./BaseElements/BaseButton.vue";
       'logo  . triangle';
   }
 
-    @media screen and (min-width: 375px) and (max-width: 389.98px) {
+  @media screen and (min-width: 375px) and (max-width: 389.98px) {
     width: 354px;
     padding-top: 30px;
-     grid-template-areas:
+    grid-template-areas:
       'psbLogo . arrow'
       'text text text'
       'costs costs costs'
@@ -110,7 +111,7 @@ import BaseButton from "./BaseElements/BaseButton.vue";
       width: 90px;
       height: 95px;
       align-self: end;
-      justify-self: end;
+      justify-self: start;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1919.98px) {
@@ -138,13 +139,13 @@ import BaseButton from "./BaseElements/BaseButton.vue";
     grid-area: text;
 
     @media screen and (min-width : 320px) and (max-width: 374.98px) {
-      font-size: 30px;
-      padding: 30px 0 10px 0;
+      font-size: 34px;
+      padding: 30px 30px 10px;
     }
 
     @media screen and (min-width: 375px) and (max-width: 1023.98px) {
       font-size: 41px;
-      padding: 50px 0 10px;
+      padding: 50px 45px 10px;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1919.98px) {
@@ -281,11 +282,15 @@ import BaseButton from "./BaseElements/BaseButton.vue";
       height: 113px;
       align-self: end;
       margin-top: 60px;
+      position: relative;
+      right: 15px;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1919.98px) {
       width: 210px;
       height: 210px;
+      position: relative;
+      right: 15px;
     }
 
     @media screen and (min-width: 1920px) {
@@ -318,4 +323,5 @@ import BaseButton from "./BaseElements/BaseButton.vue";
   @media screen and (min-width: 1920px) {
     padding: 27.5px 51px;
   }
-}</style>
+}
+</style>
