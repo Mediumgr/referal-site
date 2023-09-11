@@ -28,7 +28,7 @@ export default {
     DetailedInfo,
     SelectOption,
     FeedbackSection,
-    FormData
+    FormData,
   },
 };
 </script>

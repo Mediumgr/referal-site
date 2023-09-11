@@ -1,23 +1,69 @@
 <template>
     <section>
         <div class="form-section">
-            <h2 class="form-section_title">Заполните формы</h2>
-            <p class="form-section_step">Шаг 1</p>
-            <form @submit.prevent="sendData()" class="form">
-                <h3 class="form_recommender">Рекомендатель</h3>
-                <!-- <BaseInput></BaseInput>
-                <BaseInput></BaseInput> -->
-                <label for="name">Имя и&nbsp;фамилия</label>
-                <input type="text" id="name" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-                <label for="phone">Номер телефона</label>
-                <input type="tel" id="phone" required>
-                <BaseCheckbox v-model="checked"></BaseCheckbox>
-            </form>
-            <div class="form-section_btn">
-                <BaseButton class="custom-btn">Шаг 2</BaseButton>
-            </div>
+            <h1 class="form-section_title">Заполните формы</h1>
+            <p v-if="userWidth < 1024" class="form-section_step">{{ step }}</p>
+            <template v-if="userWidth < 1024">
+                <form v-if="recommender" @submit.stop.prevent="sendData()">
+                    <div class="form">
+                        <h3 class="form_recommender">Рекомендатель</h3>
+                        <BaseInput v-model="recommenderName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                        </BaseInput>
+                        <BaseInput v-model="recommenderEmail" type="email" label="email" text="Email"></BaseInput>
+                        <BaseInput v-model="recommenderPhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
+                        <BaseCheckbox v-model="checked[0]" id="recommender" type="checkbox"></BaseCheckbox>
+                    </div>
+                    <div class="form-section_btn">
+                        <BaseButton class="custom-btn">Шаг 2</BaseButton>
+                    </div>
+                </form>
+                <form v-if="candidate" @submit.stop.prevent="sendData()">
+                    <div class="form">
+                        <h3 class="form_candidate">Кандидат</h3>
+                        <BaseInput v-model="candidateName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                        </BaseInput>
+                        <BaseInput v-model="candidateEmail" type="email" label="email" text="Email"></BaseInput>
+                        <BaseInput v-model="candidatePhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
+                        <div class="flexCheckBoxes">
+                            <BaseCheckbox v-model="file" type="file"></BaseCheckbox>
+                            <BaseCheckbox v-model="checked[1]" id="candidate" type="checkbox"></BaseCheckbox>
+                        </div>
+                    </div>
+                    <div class="form-section_btn">
+                        <BaseButton class="custom-btn">Отправить</BaseButton>
+                    </div>
+                </form>
+            </template>
+            <template v-if="userWidth > 1023">
+                <div class="form-container">
+                    <form @submit.stop.prevent="sendData()">
+                        <div class="form firstForm">
+                            <h3 class="form_recommender">Рекомендатель</h3>
+                            <BaseInput v-model="recommenderName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                            </BaseInput>
+                            <BaseInput v-model="recommenderEmail" type="email" label="email" text="Email"></BaseInput>
+                            <BaseInput v-model="recommenderPhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
+                            <BaseCheckbox v-model="checked[0]" id="recommender" type="checkbox"></BaseCheckbox>
+                        </div>
+                        <div class="form-section_btn">
+                            <BaseButton class="custom-btn">Отправить</BaseButton>
+                        </div>
+                    </form>
+                    <form>
+                        <div class="form">
+                            <h3 class="form_candidate">Кандидат</h3>
+                            <BaseInput v-model="candidateName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                            </BaseInput>
+                            <BaseInput v-model="candidateEmail" type="email" label="email" text="Email"></BaseInput>
+                            <BaseInput v-model="candidatePhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
+                            <div class="flexCheckBoxes">
+                                <BaseCheckbox v-model="file" type="file"></BaseCheckbox>
+                                <BaseCheckbox v-model="checked[1]" id="candidate" type="checkbox"></BaseCheckbox>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </template>
         </div>
         <footer class="footer">
             Юридический дисклеймер о&nbsp;ПСБ Лаб (правила акции, ссылки на&nbsp;юридические документы, сноски
@@ -29,59 +75,114 @@
 <script setup>
 import BaseButton from './BaseElements/BaseButton.vue';
 import BaseCheckbox from './BaseElements/BaseCheckbox.vue';
-// import BaseInput from './BaseElements/BaseInput.vue';
+import BaseInput from './BaseElements/BaseInput.vue';
+import { ref, onMounted } from 'vue'
 
-import { ref } from 'vue'
-const checked = ref(false)
+const step = ref('Шаг 1')
+const recommender = ref(true)
+const candidate = ref(false)
+const checked = ref([false, false])
+const file = ref('')
+const recommenderName = ref('')
+const recommenderEmail = ref('')
+const recommenderPhone = ref(null)
+const candidateName = ref('')
+const candidateEmail = ref('')
+const candidatePhone = ref(null)
+const userWidth = ref(document.documentElement.clientWidth);
+// alert(userWidth.value)
+onMounted(() => {
+    window.addEventListener("resize", function () {
+        userWidth.value = document.documentElement.clientWidth;
+    });
+});
+
 
 const sendData = () => {
-    console.log('sendData')
+    if (recommender) {
+        console.log('recommender')
+        step.value = 'Шаг 2'
+        candidate.value = true
+        recommender.value = false
+    } else {
+
+        console.log('candidate')
+    }
+    console.log('Отправлено')
 }
+
 </script>
 
 <style lang="scss" scoped>
-.form-section {
+section {
     max-width: 100%;
 
     @media screen and (min-width: 320px) {
-        padding: 0 calc(50% - 155px) 66px;
+        padding: 0 calc(50% - 155px) 0;
     }
 
     @media screen and (min-width: 375px) {
-        padding: 0 calc(50% - 177px) 60px;
+        padding: 0 calc(50% - 177px) 0;
     }
 
     @media screen and (min-width: 390px) {
-        padding: 0 calc(50% - 187px) 60px;
+        padding: 0 calc(50% - 187px) 0;
     }
 
     @media screen and (min-width: 1024px) {
-        padding: 0 calc(50% - 472px) 100px;
+        padding: 0 calc(50% - 472px) 0;
     }
 
     @media screen and (min-width: 1920px) {
-        padding: 0 calc(50% - 880px) 120px;
+        padding: 0 calc(50% - 880px) 0;
     }
 
-    &_title {
-        color: #FFF;
-        font-size: 30px;
-        font-weight: 700;
-        line-height: normal;
-    }
+    .form-section {
+        &_title {
+            color: #FFF;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: normal;
 
-    &_step {
-        color: #FFF;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: normal;
-        padding: 12px 0;
-    }
+            @media screen and (min-width: 1024px) {
+                font-size: 60px;
+            }
 
-    &_btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+            @media screen and (min-width: 1920px) {
+                font-size: 100px;
+            }
+        }
+
+        &_step {
+            color: #FFF;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: normal;
+            padding: 12px 0;
+        }
+
+        &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @media screen and (min-width: 1024px) {
+                position: relative;
+                left: 245px;
+            }
+
+            @media screen and (min-width: 1920px) {
+                position: relative;
+                left: 455px;
+            }
+
+        }
+    }
+}
+
+.firstForm {
+    @media screen and (min-width: 1024px) {
+        border-radius: 20px 20px 1px 20px !important;
     }
 }
 
@@ -89,17 +190,44 @@ const sendData = () => {
     display: flex;
     flex-direction: column;
     padding: 16px 8px;
-    gap: 12px;
     border-radius: 20px 20px 1px 20px;
     margin-bottom: 32px;
     background: rgba(255, 255, 255, 1);
 
-    &_recommender {
+    @media screen and (min-width: 1024px) {
+        width: 456px;
+        border-radius: 20px 20px 20px 1px;
+        padding: 24px 40px 9px;
+    }
+
+    @media screen and (min-width: 1920px) {
+        width: 848px;
+        height: 564px;
+        justify-content: space-between;
+    }
+
+    &_recommender,
+    &_candidate {
+        padding-bottom: 12px;
         color: #111;
         font-size: 24px;
         font-weight: 700;
         line-height: normal;
+
+        @media screen and (min-width: 1024px) {
+            text-align: center;
+        }
+
+        @media screen and (min-width: 1920px) {
+            font-size: 48px;
+        }
     }
+}
+
+.flexCheckBoxes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .footer {
@@ -108,11 +236,42 @@ const sendData = () => {
     font-size: 12px;
     font-weight: 500;
     line-height: normal;
+
+    @media screen and (min-width: 1920px) {
+        font-size: 24px;
+    }
 }
 
 .custom-btn {
     font-size: 16px;
     padding: 20px 24px;
     width: 160px;
+    margin-bottom: 66px;
+
+    @media screen and (min-width: 1024px) {
+        padding: 18px 32px;
+        margin-bottom: 73px;
+    }
+
+    @media screen and (min-width: 1920px) {
+        width: auto;
+        font-size: 24px;
+        padding: 24px 48px;
+        margin-bottom: 96px;
+    }
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+
+    @media screen and (min-width: 1024px) {
+        padding: 32px 0 0;
+    }
+
+    @media screen and (min-width: 1920px) {
+        padding: 40px 0 0;
+    }
 }
 </style>
