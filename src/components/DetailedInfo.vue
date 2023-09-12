@@ -898,7 +898,7 @@ onMounted(() => {
         }
 
         @media screen and (min-width: 390px) {
-            min-height: 674px;
+            height: 674px;
         }
 
         @media screen and (min-width: 1024px) {

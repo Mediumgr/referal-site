@@ -4,14 +4,21 @@
             <h1 class="form-section_title">Заполните формы</h1>
             <p v-if="userWidth < 1024" class="form-section_step">{{ step }}</p>
             <template v-if="userWidth < 1024">
-                <form v-if="recommender" @submit.stop.prevent="sendData()">
+                <form v-if="recommender" @submit.stop.prevent="stepTwo()">
                     <div class="form">
                         <h3 class="form_recommender">Рекомендатель</h3>
-                        <BaseInput v-model="recommenderName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                        <BaseInput v-model="recommenderName" type="text" :error="regExpChecks['recommenderNameError']"
+                            label="text" text="Имя и&nbsp;фамилия">
                         </BaseInput>
-                        <BaseInput v-model="recommenderEmail" type="email" label="email" text="Email"></BaseInput>
-                        <BaseInput v-model="recommenderPhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
-                        <BaseCheckbox v-model="checked[0]" id="recommender" type="checkbox"></BaseCheckbox>
+                        <BaseInput v-model="recommenderEmail" type="email" :error="regExpChecks['recommenderEmailError']"
+                            label="email" text="Email">
+                        </BaseInput>
+                        <BaseInput v-model="recommenderPhone" type="tel" :error="regExpChecks['recommenderPhoneError']"
+                            label="tel" text="Номер телефона">
+                        </BaseInput>
+                        <BaseCheckbox v-model="checked[0]" type="checkbox" :error="regExpChecks['recommenderAgreedError']"
+                            id="recommender">
+                        </BaseCheckbox>
                     </div>
                     <div class="form-section_btn">
                         <BaseButton class="custom-btn">Шаг 2</BaseButton>
@@ -20,14 +27,19 @@
                 <form v-if="candidate" @submit.stop.prevent="sendData()">
                     <div class="form">
                         <h3 class="form_candidate">Кандидат</h3>
-                        <BaseInput v-model="candidateName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                        <BaseInput v-model="candidateName" type="text" :error="regExpChecks['candidateNameError']"
+                            label="text" text="Имя и&nbsp;фамилия">
                         </BaseInput>
-                        <BaseInput v-model="candidateEmail" type="email" label="email" text="Email"></BaseInput>
-                        <BaseInput v-model="candidatePhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
+                        <BaseInput v-model="candidateEmail" type="email" :error="regExpChecks['candidateEmailError']"
+                            label="email" text="Email"></BaseInput>
+                        <BaseInput v-model="candidatePhone" type="tel" :error="regExpChecks['candidatePhoneError']"
+                            label="tel" text="Номер телефона"></BaseInput>
                         <div class="flexCheckBoxes">
-                            <BaseCheckbox v-model="file" id="candidateFile" type="file" class="file"></BaseCheckbox>
+                            <BaseCheckbox v-model="file" :error="regExpChecks['candidateFileError']" id="candidateFile"
+                                type="file" class="file"></BaseCheckbox>
                             <span class="tooltip-text">Прикрепить резюме</span>
-                            <BaseCheckbox v-model="checked[1]" id="candidate" type="checkbox"></BaseCheckbox>
+                            <BaseCheckbox v-model="checked[1]" :error="regExpChecks['candidateAgreedError']" id="candidate"
+                                type="checkbox"></BaseCheckbox>
                         </div>
                     </div>
                     <div class="form-section_btn">
@@ -40,30 +52,40 @@
                     <form @submit.stop.prevent="sendData()">
                         <div class="form firstForm">
                             <h3 class="form_recommender">Рекомендатель</h3>
-                            <BaseInput v-model="recommenderName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                            <BaseInput v-model="recommenderName" type="text" :error="regExpChecks['recommenderNameError']"
+                                label="text" text="Имя и&nbsp;фамилия">
                             </BaseInput>
-                            <BaseInput v-model="recommenderEmail" type="email" label="email" text="Email"></BaseInput>
-                            <BaseInput v-model="recommenderPhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
-                            <BaseCheckbox v-model="checked[0]" id="recommender" type="checkbox"></BaseCheckbox>
+                            <BaseInput v-model="recommenderEmail" type="email"
+                                :error="regExpChecks['recommenderEmailError']" label="email" text="Email"></BaseInput>
+                            <BaseInput v-model="recommenderPhone" type="tel" :error="regExpChecks['recommenderPhoneError']"
+                                label="tel" text="Номер телефона">
+                            </BaseInput>
+                            <BaseCheckbox v-model="checked[0]" :error="regExpChecks['recommenderAgreedError']"
+                                id="recommender" type="checkbox"></BaseCheckbox>
                         </div>
                         <div class="form-section_btn">
                             <BaseButton class="custom-btn">Отправить</BaseButton>
                         </div>
                     </form>
                     <form>
-                        <div class="form">
+                        <div class="form" ref="candidateForm">
                             <h3 class="form_candidate">Кандидат</h3>
-                            <BaseInput v-model="candidateName" type="text" label="text" text="Имя и&nbsp;фамилия">
+                            <BaseInput v-model="candidateName" type="text" :error="regExpChecks['candidateNameError']"
+                                label="text" text="Имя и&nbsp;фамилия">
                             </BaseInput>
-                            <BaseInput v-model="candidateEmail" type="email" label="email" text="Email"></BaseInput>
-                            <BaseInput v-model="candidatePhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
+                            <BaseInput v-model="candidateEmail" type="email" :error="regExpChecks['candidateEmailError']"
+                                label="email" text="Email"></BaseInput>
+                            <BaseInput v-model="candidatePhone" type="tel" :error="regExpChecks['candidatePhoneError']"
+                                label="tel" text="Номер телефона">
+                            </BaseInput>
                             <div class="flexCheckBoxes">
-                                <BaseCheckbox v-model="file" id="candidateFile" type="file" class="file"
-                                    aria-labelledby="tooltip-label">
+                                <BaseCheckbox v-model="file" :error="regExpChecks['candidateFileError']" id="candidateFile"
+                                    type="file" class="file" aria-labelledby="tooltip-label">
                                 </BaseCheckbox>
                                 <span class="tooltip-text" role="tooltip" id="tooltip-label">Прикрепить резюме не более
                                     5МБ</span>
-                                <BaseCheckbox v-model="checked[1]" id="candidate" type="checkbox"></BaseCheckbox>
+                                <BaseCheckbox v-model="checked[1]" :error="regExpChecks['candidateAgreedError']"
+                                    id="candidate" type="checkbox"></BaseCheckbox>
                             </div>
                             <!--   <div class="g-recaptcha" data-sitekey="6LeA-xgoAAAAAFT0Z268J8hUbytDfvGwbMs3GaJc"
                                 data-callback="getRecaptchaToken"></div> -->
@@ -73,8 +95,8 @@
             </template>
         </div>
         <footer class="footer">
-            Юридический дисклеймер о&nbsp;ПСБ Лаб (правила акции, ссылки на&nbsp;юридические документы, сноски
-            по&nbsp;тексту)
+            Юридический дисклеймер о&nbsp;ПСБ Лаб (правила акции, ссылки
+            на&nbsp;юридические документы, сноски по&nbsp;тексту)
         </footer>
     </section>
 </template>
@@ -83,63 +105,223 @@
 import BaseButton from './BaseElements/BaseButton.vue';
 import BaseCheckbox from './BaseElements/BaseCheckbox.vue';
 import BaseInput from './BaseElements/BaseInput.vue';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, unref, watch } from 'vue';
 
-const step = ref('Шаг 1')
-const recommender = ref(true)
-const candidate = ref(false)
-const checked = ref([false, false])
-const file = ref({})
-const recommenderName = ref('')
-const recommenderEmail = ref('')
-const recommenderPhone = ref(null)
-const candidateName = ref('')
-const candidateEmail = ref('')
-const candidatePhone = ref(null)
+const step = ref('Шаг 1');
+const recommender = ref(true);
+const candidate = ref(false);
+const checked = ref([false, false]);
+const file = ref({});
+
+const candidateForm = ref(null)
+
+const recommenderName = ref('');
+const recommenderEmail = ref('');
+const recommenderPhone = ref('');
+
+const candidateName = ref('');
+const candidateEmail = ref('');
+const candidatePhone = ref('');
+
+let regExpChecks = ref({
+    recommenderNameError: '',
+    recommenderEmailError: '',
+    recommenderPhoneError: '',
+    recommenderAgreedError: '',
+    candidateNameError: '',
+    candidateEmailError: '',
+    candidatePhoneError: '',
+    candidateFileError: '',
+    candidateAgreedError: ''
+});
+
+const regExp = ref({
+    name: /^([а-яё\s]+|[a-z\s]+)$/iu,
+    phone: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+    email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
+});
+
 const userWidth = ref(document.documentElement.clientWidth);
-// alert(userWidth.value)
 onMounted(() => {
-    window.addEventListener("resize", function () {
+    window.addEventListener('resize', function () {
         userWidth.value = document.documentElement.clientWidth;
     });
 });
 
+const stepTwo = () => {
+
+    validateRecommender();
+
+    let statusName = regExpChecks['recommenderNameError'];
+    let statusEmail = regExpChecks['recommenderEmailError'];
+    let statusPhone = regExpChecks['recommenderPhoneError'];
+    let statusAgreed = regExpChecks['recommenderAgreedError'];
+    if (
+        statusName === '' &&
+        statusEmail === '' &&
+        statusPhone === '' &&
+        statusAgreed === ''
+    ) {
+        step.value = 'Шаг 2';
+        candidate.value = true;
+        recommender.value = false;
+    }
+};
 
 const sendData = async () => {
-    if (recommender) {
-        // console.log('recommender')
-        step.value = 'Шаг 2'
-        candidate.value = true
-        recommender.value = false
-    } else {
 
-        // console.log('candidate')
+    if (userWidth.value < 1024) {
+        validateCandidate();
+    } else if (userWidth.value > 1023) {
+        validateRecommender();
+        validateCandidate();
     }
 
-    let formData = new FormData()
-    formData.append('recommender[NAME]', recommenderName.value)
-    formData.append('recommender[EMAIL]', recommenderEmail.value)
-    formData.append('recommender[PHONE]', recommenderPhone.value)
-    formData.append('candidate[NAME]', candidateName.value)
-    formData.append('candidate[EMAIL]', candidateEmail.value)
-    formData.append('candidate[PHONE]', candidatePhone.value)
+    let isErrors;
+    for (let error in regExpChecks) {
+        if (!!regExpChecks[error]) {
+            isErrors = true
+            if (userWidth.value > 1023 && userWidth.value < 1920) {
+                if (regExpChecks['candidateFileError'] !== '' || regExpChecks['candidateAgreedError'] !== '') {
+                    candidateForm.value.style.height = '289px'
+                }
+            }
+            break
+        }
+    }
 
-    formData.append('userfile', file.value.file, file.value.fileName)
+    if (!isErrors) {
+        let formData = new FormData();
 
- /*    for (let [name, value] of formData) {
-        console.log(`${name} = ${value}`);
-    } */
+        formData.append('recommender[NAME]', recommenderName.value);
+        formData.append('recommender[EMAIL]', recommenderEmail.value);
+        formData.append('recommender[PHONE]', recommenderPhone.value);
+        formData.append('candidate[NAME]', candidateName.value);
+        formData.append('candidate[EMAIL]', candidateEmail.value);
+        formData.append('candidate[PHONE]', candidatePhone.value);
+        formData.append('userfile', file.value.file, file.value.fileName);
 
-    let response = await fetch('/upload/', {
-        method: 'POST',
-        body: formData
-    });
+        let response = await fetch('/upload/', {
+            method: 'POST',
+            body: formData,
+        });
 
-    let result = await response.json();
-    console.log('result', result)
+        let result = await response.json();
+        console.log('result', result);
+    }
+};
 
-}
+const validateRecommender = () => {
+    regExpChecks = unref(regExpChecks);
 
+    if (regExp.value.name.test(recommenderName.value)) {
+        regExpChecks['recommenderNameError'] = '';
+    } else {
+        regExpChecks['recommenderNameError'] = 'Введите корректное имя';
+    }
+    if (regExp.value.email.test(recommenderEmail.value)) {
+        regExpChecks['recommenderEmailError'] = '';
+    } else {
+        regExpChecks['recommenderEmailError'] = 'Введите корректный email';
+    }
+    if (regExp.value.phone.test(recommenderPhone.value)) {
+        regExpChecks['recommenderPhoneError'] = '';
+    } else {
+        regExpChecks['recommenderPhoneError'] = 'Введите корректный телефон';
+    }
+    if (checked.value[0]) {
+        regExpChecks['recommenderAgreedError'] = '';
+    } else {
+        regExpChecks['recommenderAgreedError'] =
+            'Подтвердите согласие на обработку персональных данных';
+    }
+};
+
+const validateCandidate = () => {
+    regExpChecks = unref(regExpChecks);
+
+    if (regExp.value.name.test(candidateName.value)) {
+        regExpChecks['candidateNameError'] = '';
+    } else {
+        regExpChecks['candidateNameError'] = 'Введите корректное имя';
+    }
+    if (regExp.value.email.test(candidateEmail.value)) {
+        regExpChecks['candidateEmailError'] = '';
+    } else {
+        regExpChecks['candidateEmailError'] = 'Введите корректный email';
+    }
+    if (regExp.value.phone.test(candidatePhone.value)) {
+        regExpChecks['candidatePhoneError'] = '';
+    } else {
+        regExpChecks['candidatePhoneError'] = 'Введите корректный телефон';
+    }
+    if (checked.value[1]) {
+        regExpChecks['candidateAgreedError'] = '';
+    } else {
+        regExpChecks['candidateAgreedError'] =
+            'Подтвердите согласие на обработку персональных данных';
+    } if (file.value.file) {
+        regExpChecks['candidateFileError'] = '';
+    } else {
+        regExpChecks['candidateFileError'] = 'Прикрепите файл';
+    }
+};
+
+watch(
+    () => [recommenderName.value, recommenderEmail.value],
+    ([name, email]) => {
+        if (regExp.value.name.test(name)) {
+            regExpChecks['recommenderNameError'] = '';
+        }
+        if (regExp.value.email.test(email)) {
+            regExpChecks['recommenderEmailError'] = '';
+        }
+    }
+);
+watch(
+    () => [recommenderPhone.value, checked.value[0]],
+    ([phone, agreed]) => {
+        if (regExp.value.phone.test(phone)) {
+            regExpChecks['recommenderPhoneError'] = '';
+        }
+        if (agreed) {
+            regExpChecks['recommenderAgreedError'] = '';
+        }
+    }
+);
+
+watch(
+    () => [file.value.file, checked.value[1]],
+    ([file, agreed]) => {
+        if (file) {
+            regExpChecks['candidateFileError'] = '';
+        }
+        if (agreed) {
+            regExpChecks['candidateAgreedError'] = '';
+        }
+    }
+);
+
+watch(
+    () => [candidatePhone.value, candidateEmail.value],
+    ([phone, email]) => {
+        if (regExp.value.phone.test(phone)) {
+            regExpChecks['candidatePhoneError'] = '';
+        }
+        if (regExp.value.email.test(email)) {
+            regExpChecks['candidateEmailError'] = '';
+        }
+    }
+);
+
+watch(
+    () => candidateName.value,
+    (name) => {
+        if (regExp.value.name.test(name)) {
+            regExpChecks['candidateNameError'] = '';
+        }
+    }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -168,7 +350,7 @@ section {
 
     .form-section {
         &_title {
-            color: #FFF;
+            color: #fff;
             font-size: 30px;
             font-weight: 700;
             line-height: normal;
@@ -183,7 +365,7 @@ section {
         }
 
         &_step {
-            color: #FFF;
+            color: #fff;
             font-size: 18px;
             font-weight: 700;
             line-height: normal;
@@ -204,7 +386,6 @@ section {
                 position: relative;
                 left: 455px;
             }
-
         }
     }
 }
@@ -258,10 +439,11 @@ section {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    top: 4px;
 }
 
 .footer {
-    color: #A1A1A1;
+    color: #a1a1a1;
     text-align: center;
     font-size: 12px;
     font-weight: 500;
@@ -306,8 +488,8 @@ section {
 }
 
 .tooltip-text {
-    background-color: #0D0D0D;
-    color: #FFFFFF;
+    background-color: #0d0d0d;
+    color: #ffffff;
     font-size: 11px;
     text-transform: none;
     padding: 10px;
@@ -326,9 +508,8 @@ section {
         top: 30px;
         left: 15px;
         border: 18px solid transparent;
-        border-top: 20px solid #0D0D0D;
+        border-top: 20px solid #0d0d0d;
     }
-
 }
 
 .file:hover+.tooltip-text {
