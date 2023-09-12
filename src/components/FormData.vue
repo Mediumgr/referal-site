@@ -117,13 +117,18 @@ const sendData = async () => {
     }
 
     let formData = new FormData()
-    formData.append('recommender[NAME]', recommenderName)
-    formData.append('recommender[EMAIL]', recommenderEmail)
-    formData.append('recommender[PHONE]', recommenderPhone)
-    formData.append('candidate[NAME]', candidateName)
-    formData.append('candidate[EMAIL]', candidateEmail)
-    formData.append('candidate[PHONE]', candidatePhone)
-    formData.append('userfile', file.value.blob, file.value.fileName)
+    formData.append('recommender[NAME]', recommenderName.value)
+    formData.append('recommender[EMAIL]', recommenderEmail.value)
+    formData.append('recommender[PHONE]', recommenderPhone.value)
+    formData.append('candidate[NAME]', candidateName.value)
+    formData.append('candidate[EMAIL]', candidateEmail.value)
+    formData.append('candidate[PHONE]', candidatePhone.value)
+
+    formData.append('userfile', file.value.file, file.value.fileName)
+
+ /*    for (let [name, value] of formData) {
+        console.log(`${name} = ${value}`);
+    } */
 
     let response = await fetch('/upload/', {
         method: 'POST',

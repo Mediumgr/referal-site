@@ -38,27 +38,28 @@ const change = async (event) => {
         emit('update:modelValue', event.target.checked);
     } else {
         const file = event.target.files[0];
-
+/*         console.log('file', file)
+        console.log('event.target.files', event.target.files) */
         if (!file) return;
 
         fileName.value = file.name
             .split('\\')
             .pop()
         // .replace(/\.[^.]+$/, '');
-        debugger
-        const readData = (fileObject) =>
-            new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    resolve(event.target.result);
-                };
-                reader.readAsDataURL(fileObject);
-            });
-
-        let imageSrc = await readData(file);
-        const response = await fetch(imageSrc);
-        let blob = await response.blob();
-        emit('update:modelValue', { blob, fileName });
+        /*   debugger
+          const readData = (fileObject) =>
+              new Promise((resolve) => {
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                      resolve(event.target.result);
+                  };
+                  reader.readAsDataURL(fileObject);
+              });
+  
+          let imageSrc = await readData(file);
+          const response = await fetch(imageSrc);
+          let blob = await response.blob(); */
+        emit('update:modelValue', { fileName, file });
     }
 }
 </script>

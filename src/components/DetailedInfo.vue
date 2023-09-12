@@ -865,7 +865,7 @@ onMounted(() => {
         background: #fff;
 
         @media screen and (min-width: 320px) {
-            min-height: 334px;
+            min-height: 315px;
             width: 310px;
             padding: 16px 7px 16px;
             border-radius: 20px 20px 1px 20px;
