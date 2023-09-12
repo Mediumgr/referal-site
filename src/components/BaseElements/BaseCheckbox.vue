@@ -1,25 +1,25 @@
 <template>
-    <div class="checkbox_container">
-        <input :id="id" :type="type" :checked="modelValue" v-bind="{
-            ...$attrs,
-            onChange: ($event) => {
-                $emit('update:modelValue', $event.target.checked);
-            }
-        }" />
-        <label v-if="type === 'file'" for="candidate" class="fileLabel"></label>
-        <label :for="id" v-if="type === 'checkbox'" class="checkboxLabel">
-            Я&nbsp;даю согласие на&nbsp;обработку моих персональных данных,
-            и&nbsp;передачу их&nbsp;в&nbsp;ПАО &laquo;Промсвязьбанк&raquo; для участия
-            в&nbsp;программе &quot;Приведи друга в&nbsp;ПСБ Лаб&quot;.
-        </label>
-    </div>
+    <!-- <div class="checkbox_container"> -->
+    <input :id="id" :type="type" :checked="modelValue" @change="change($event)" />
+    <label v-if="type === 'file'" for="candidateFile" class="fileLabel" v-bind="$attrs"></label>
+    <span class="fileName">{{ fileName }}</span>
+    <label :for="id" v-if="type === 'checkbox'" class="checkboxLabel">
+        Я&nbsp;даю согласие на&nbsp;обработку моих персональных данных,
+        и&nbsp;передачу их&nbsp;в&nbsp;ПАО &laquo;Промсвязьбанк&raquo; для участия
+        в&nbsp;программе &quot;Приведи друга в&nbsp;ПСБ Лаб&quot;.
+    </label>
+    <!-- </div> -->
 </template>
 
 <script setup>
+import { ref } from 'vue'
+/* defineOptions({
+    inheritAttrs: false,
+}) */
 const emit = defineEmits(['update:modelValue']);
 const props = defineProps({
     modelValue: {
-        type: Boolean,
+        type: [Boolean, Object],
         default: false,
     },
     type: {
@@ -28,13 +28,43 @@ const props = defineProps({
     },
     id: {
         type: String,
-        required: false,
+        required: true,
     }
 });
+const fileName = ref('')
+
+const change = async (event) => {
+    if (props.type === 'checkbox') {
+        emit('update:modelValue', event.target.checked);
+    } else {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        fileName.value = file.name
+            .split('\\')
+            .pop()
+        // .replace(/\.[^.]+$/, '');
+        debugger
+        const readData = (fileObject) =>
+            new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    resolve(event.target.result);
+                };
+                reader.readAsDataURL(fileObject);
+            });
+
+        let imageSrc = await readData(file);
+        const response = await fetch(imageSrc);
+        let blob = await response.blob();
+        emit('update:modelValue', { blob, fileName });
+    }
+}
 </script>
 
 <style lang="scss" scoped>
-.checkbox_container {
+/* .checkbox_container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -42,7 +72,7 @@ const props = defineProps({
     padding-top: 14px;
     position: relative;
 }
-
+ */
 input[type='checkbox'] {
     position: absolute;
     z-index: -10;
@@ -128,7 +158,9 @@ input[type='file']~.fileLabel:before {
 }
 
 input[type='file']:hover~.fileLabel:before {
+    z-index: 2;
     background-image: url('/src/assets/img/pincolor.png');
+
     transition: .5s background-image;
     -webkit-transition: .5s background-image;
     -moz-transition: .5s background-image;
@@ -136,5 +168,13 @@ input[type='file']:hover~.fileLabel:before {
     @media screen and (min-width: 1920px) {
         background-image: url('/src/assets/img/pincolorBig.png');
     }
+}
+
+.fileName {
+    position: absolute;
+    font-size: 11px;
+    top: 41px;
+    left: -4px;
+    color: rgb(6, 21, 5);
 }
 </style>

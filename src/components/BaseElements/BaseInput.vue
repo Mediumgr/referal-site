@@ -47,6 +47,10 @@ const props = defineProps({
 input {
     outline: none;
     border: none;
+    background-color: inherit;
+    outline-offset: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
     border-bottom: 2px solid black;
     width: 100%;
     height: 100%;

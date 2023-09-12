@@ -25,7 +25,8 @@
                         <BaseInput v-model="candidateEmail" type="email" label="email" text="Email"></BaseInput>
                         <BaseInput v-model="candidatePhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
                         <div class="flexCheckBoxes">
-                            <BaseCheckbox v-model="file" type="file"></BaseCheckbox>
+                            <BaseCheckbox v-model="file" id="candidateFile" type="file" class="file"></BaseCheckbox>
+                            <span class="tooltip-text">Прикрепить резюме</span>
                             <BaseCheckbox v-model="checked[1]" id="candidate" type="checkbox"></BaseCheckbox>
                         </div>
                     </div>
@@ -57,9 +58,15 @@
                             <BaseInput v-model="candidateEmail" type="email" label="email" text="Email"></BaseInput>
                             <BaseInput v-model="candidatePhone" type="tel" label="tel" text="Номер телефона"></BaseInput>
                             <div class="flexCheckBoxes">
-                                <BaseCheckbox v-model="file" type="file"></BaseCheckbox>
+                                <BaseCheckbox v-model="file" id="candidateFile" type="file" class="file"
+                                    aria-labelledby="tooltip-label">
+                                </BaseCheckbox>
+                                <span class="tooltip-text" role="tooltip" id="tooltip-label">Прикрепить резюме не более
+                                    5МБ</span>
                                 <BaseCheckbox v-model="checked[1]" id="candidate" type="checkbox"></BaseCheckbox>
                             </div>
+                            <!--   <div class="g-recaptcha" data-sitekey="6LeA-xgoAAAAAFT0Z268J8hUbytDfvGwbMs3GaJc"
+                                data-callback="getRecaptchaToken"></div> -->
                         </div>
                     </form>
                 </div>
@@ -82,7 +89,7 @@ const step = ref('Шаг 1')
 const recommender = ref(true)
 const candidate = ref(false)
 const checked = ref([false, false])
-const file = ref('')
+const file = ref({})
 const recommenderName = ref('')
 const recommenderEmail = ref('')
 const recommenderPhone = ref(null)
@@ -98,17 +105,34 @@ onMounted(() => {
 });
 
 
-const sendData = () => {
+const sendData = async () => {
     if (recommender) {
-        console.log('recommender')
+        // console.log('recommender')
         step.value = 'Шаг 2'
         candidate.value = true
         recommender.value = false
     } else {
 
-        console.log('candidate')
+        // console.log('candidate')
     }
-    console.log('Отправлено')
+
+    let formData = new FormData()
+    formData.append('recommender[NAME]', recommenderName)
+    formData.append('recommender[EMAIL]', recommenderEmail)
+    formData.append('recommender[PHONE]', recommenderPhone)
+    formData.append('candidate[NAME]', candidateName)
+    formData.append('candidate[EMAIL]', candidateEmail)
+    formData.append('candidate[PHONE]', candidatePhone)
+    formData.append('userfile', file.value.blob, file.value.fileName)
+
+    let response = await fetch('/upload/', {
+        method: 'POST',
+        body: formData
+    });
+
+    let result = await response.json();
+    console.log('result', result)
+
 }
 
 </script>
@@ -228,6 +252,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .footer {
@@ -273,5 +298,35 @@ section {
     @media screen and (min-width: 1920px) {
         padding: 40px 0 0;
     }
+}
+
+.tooltip-text {
+    background-color: #0D0D0D;
+    color: #FFFFFF;
+    font-size: 11px;
+    text-transform: none;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    left: 91px;
+    top: -48px;
+    z-index: 1;
+    transform: translateX(-50%);
+    display: none;
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 15px;
+        border: 18px solid transparent;
+        border-top: 20px solid #0D0D0D;
+    }
+
+}
+
+.file:hover+.tooltip-text {
+    display: block;
 }
 </style>
