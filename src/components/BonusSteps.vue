@@ -28,7 +28,7 @@
       </div>
     </div>
 
- <!--    <div v-if="userWidth > 1919">
+    <!--    <div v-if="userWidth > 1919">
       <svg class="colorLine_big" ref="colorLine" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1901 520">
         <g filter="url(#filter0_ddf_87_180)">
           <path d="M0.0566346 11H1848C1870.09 11 1888 28.9086 1888 51V469C1888 491.091 1870.09 509 1848 509H-0.0646973"
@@ -171,16 +171,16 @@ onUpdated(() => {
     whiteLine.value.style.width = userWidth.value - 12;
   } */
 
-  /*   let leftPosition = 0;
-  if (userWidth.value > 1024 && userWidth.value < 1640) {
-    leftPosition = (userWidth.value - 1024) / 2.2;
-    colorLineMiddle.value.style.left = leftPosition;
-    console.log("leftPosition_1", leftPosition);
-  } else if (userWidth.value > 1640 && userWidth.value < 1920) {
-    leftPosition = (userWidth.value - 1024) / 3.2;
-    colorLineMiddle.value.style.left = leftPosition;
-    console.log("leftPosition_2", leftPosition);
-  } 
+/*   let leftPosition = 0;
+if (userWidth.value > 1024 && userWidth.value < 1640) {
+  leftPosition = (userWidth.value - 1024) / 2.2;
+  colorLineMiddle.value.style.left = leftPosition;
+  console.log("leftPosition_1", leftPosition);
+} else if (userWidth.value > 1640 && userWidth.value < 1920) {
+  leftPosition = (userWidth.value - 1024) / 3.2;
+  colorLineMiddle.value.style.left = leftPosition;
+  console.log("leftPosition_2", leftPosition);
+} 
 });*/
 </script>
 
@@ -190,6 +190,7 @@ onUpdated(() => {
   position: relative;
 
   @media screen and (min-width: 320px) {
+    background: url('../assets/img/neon_sm.png') no-repeat left;
     padding: 0 calc(50% - 155px) 60px;
   }
 
@@ -201,12 +202,32 @@ onUpdated(() => {
     padding: 0 calc(50% - 187px) 60px;
   }
 
+  @media screen and (min-width: 425px) {
+    background-position: bottom 79px left 13px;
+  }
+
+  @media screen and (min-width: 768px) {
+    background-position: bottom 79px left 185px;
+  }
+
   @media screen and (min-width: 1024px) {
     padding: 0 calc(50% - 472px) 115px;
+    background: url('../assets/img/neon_md.png') no-repeat left;
+    background-position: bottom 80px left 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    background-position: bottom 100px left 180px;
+  }
+
+  @media screen and (min-width: 1500px) {
+      background-position: bottom 97px left 235px;
   }
 
   @media screen and (min-width: 1920px) {
     padding: 0 calc(50% - 880px) 120px;
+    background: url('../assets/img/neon_big.png') no-repeat left;
+    background-position: bottom 190px left 0;
   }
 
   &-steps {

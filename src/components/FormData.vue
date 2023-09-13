@@ -4,48 +4,52 @@
             <h1 class="form-section_title">Заполните формы</h1>
             <p v-if="userWidth < 1024" class="form-section_step">{{ step }}</p>
             <template v-if="userWidth < 1024">
-                <form v-if="recommender" @submit.stop.prevent="stepTwo()">
-                    <div class="form">
-                        <h3 class="form_recommender">Рекомендатель</h3>
-                        <BaseInput v-model="recommenderName" type="text" :error="regExpChecks['recommenderNameError']"
-                            label="text" text="Имя и&nbsp;фамилия">
-                        </BaseInput>
-                        <BaseInput v-model="recommenderEmail" type="email" :error="regExpChecks['recommenderEmailError']"
-                            label="email" text="Email">
-                        </BaseInput>
-                        <BaseInput v-model="recommenderPhone" type="tel" :error="regExpChecks['recommenderPhoneError']"
-                            label="tel" text="Номер телефона">
-                        </BaseInput>
-                        <BaseCheckbox v-model="checked[0]" type="checkbox" :error="regExpChecks['recommenderAgreedError']"
-                            id="recommender">
-                        </BaseCheckbox>
-                    </div>
-                    <div class="form-section_btn">
-                        <BaseButton class="custom-btn">Шаг 2</BaseButton>
-                    </div>
-                </form>
-                <form v-if="candidate" @submit.stop.prevent="sendData()">
-                    <div class="form">
-                        <h3 class="form_candidate">Кандидат</h3>
-                        <BaseInput v-model="candidateName" type="text" :error="regExpChecks['candidateNameError']"
-                            label="text" text="Имя и&nbsp;фамилия">
-                        </BaseInput>
-                        <BaseInput v-model="candidateEmail" type="email" :error="regExpChecks['candidateEmailError']"
-                            label="email" text="Email"></BaseInput>
-                        <BaseInput v-model="candidatePhone" type="tel" :error="regExpChecks['candidatePhoneError']"
-                            label="tel" text="Номер телефона"></BaseInput>
-                        <div class="flexCheckBoxes">
-                            <BaseCheckbox v-model="file" :error="regExpChecks['candidateFileError']" id="candidateFile"
-                                type="file" class="file"></BaseCheckbox>
-                            <span class="tooltip-text">Прикрепить резюме</span>
-                            <BaseCheckbox v-model="checked[1]" :error="regExpChecks['candidateAgreedError']" id="candidate"
-                                type="checkbox"></BaseCheckbox>
+                <transition name="modal-fade">
+                    <form v-if="recommender" @submit.stop.prevent="stepTwo()">
+                        <div class="form">
+                            <h3 class="form_recommender">Рекомендатель</h3>
+                            <BaseInput v-model="recommenderName" type="text" :error="regExpChecks['recommenderNameError']"
+                                label="text" text="Имя и&nbsp;фамилия">
+                            </BaseInput>
+                            <BaseInput v-model="recommenderEmail" type="email"
+                                :error="regExpChecks['recommenderEmailError']" label="email" text="Email">
+                            </BaseInput>
+                            <BaseInput v-model="recommenderPhone" type="tel" :error="regExpChecks['recommenderPhoneError']"
+                                label="tel" text="Номер телефона">
+                            </BaseInput>
+                            <BaseCheckbox v-model="checked[0]" type="checkbox"
+                                :error="regExpChecks['recommenderAgreedError']" id="recommender">
+                            </BaseCheckbox>
                         </div>
-                    </div>
-                    <div class="form-section_btn">
-                        <BaseButton class="custom-btn">Отправить</BaseButton>
-                    </div>
-                </form>
+                        <div class="form-section_btn">
+                            <BaseButton class="custom-btn">Шаг 2</BaseButton>
+                        </div>
+                    </form>
+                </transition>
+                <transition name="modal-fade">
+                    <form v-if="candidate" @submit.stop.prevent="sendData()">
+                        <div class="form">
+                            <h3 class="form_candidate">Кандидат</h3>
+                            <BaseInput v-model="candidateName" type="text" :error="regExpChecks['candidateNameError']"
+                                label="text" text="Имя и&nbsp;фамилия">
+                            </BaseInput>
+                            <BaseInput v-model="candidateEmail" type="email" :error="regExpChecks['candidateEmailError']"
+                                label="email" text="Email"></BaseInput>
+                            <BaseInput v-model="candidatePhone" type="tel" :error="regExpChecks['candidatePhoneError']"
+                                label="tel" text="Номер телефона"></BaseInput>
+                            <div class="flexCheckBoxes">
+                                <BaseCheckbox v-model="file" :error="regExpChecks['candidateFileError']" id="candidateFile"
+                                    type="file" class="file"></BaseCheckbox>
+                                <span class="tooltip-text">Прикрепить резюме</span>
+                                <BaseCheckbox v-model="checked[1]" :error="regExpChecks['candidateAgreedError']"
+                                    id="candidate" type="checkbox"></BaseCheckbox>
+                            </div>
+                        </div>
+                        <div class="form-section_btn">
+                            <BaseButton class="custom-btn">Отправить</BaseButton>
+                        </div>
+                    </form>
+                </transition>
             </template>
             <template v-if="userWidth > 1023">
                 <div class="form-container">
@@ -94,6 +98,18 @@
                 </div>
             </template>
         </div>
+        <Teleport to="body">
+            <transition name="modal-fade">
+                <div class="modal" v-if="open">
+                    <div class="modal-pop-up">
+                        <p class="modal-text">{{ message }}</p>
+                        <BaseButton type="button" class="custom-btn modal-btn" @click="closeModal()">
+                            Хорошо
+                        </BaseButton>
+                    </div>
+                </div>
+            </transition>
+        </Teleport>
         <footer class="footer">
             Юридический дисклеймер о&nbsp;ПСБ Лаб (правила акции, ссылки
             на&nbsp;юридические документы, сноски по&nbsp;тексту)
@@ -107,6 +123,8 @@ import BaseCheckbox from './BaseElements/BaseCheckbox.vue';
 import BaseInput from './BaseElements/BaseInput.vue';
 import { ref, onMounted, unref, watch } from 'vue';
 
+const open = ref(false)
+const message = ref('Рекомендация успешно отправлена!')
 const step = ref('Шаг 1');
 const recommender = ref(true);
 const candidate = ref(false);
@@ -163,10 +181,23 @@ const stepTwo = () => {
         statusAgreed === ''
     ) {
         step.value = 'Шаг 2';
-        candidate.value = true;
         recommender.value = false;
+        /* 500ms как для .modal-fade-leave-active */
+        setTimeout(() => {
+            candidate.value = true;
+        }, 500)
     }
 };
+
+const closeModal = () => {
+    open.value = false;
+    step.value = 'Шаг 1'
+    candidate.value = false;
+    /* 500ms как для .modal-fade-leave-active */
+    setTimeout(() => {
+        recommender.value = true;
+    }, 500)
+}
 
 const sendData = async () => {
 
@@ -177,7 +208,7 @@ const sendData = async () => {
         validateCandidate();
     }
 
-    let isErrors;
+    let isErrors = false;
     for (let error in regExpChecks) {
         if (!!regExpChecks[error]) {
             isErrors = true
@@ -190,7 +221,7 @@ const sendData = async () => {
         }
     }
 
-    if (!isErrors) {
+    if (isErrors === false) {
         let formData = new FormData();
 
         formData.append('recommender[NAME]', recommenderName.value);
@@ -201,13 +232,17 @@ const sendData = async () => {
         formData.append('candidate[PHONE]', candidatePhone.value);
         formData.append('userfile', file.value.file, file.value.fileName);
 
-        let response = await fetch('/upload/', {
+        let res = await fetch('/upload/', {
             method: 'POST',
             body: formData,
         });
 
-        let result = await response.json();
-        console.log('result', result);
+        let response = await res.json();
+
+        if (response.error === true) {
+            message.value = response.message
+        }
+        open.value = true;
     }
 };
 
@@ -514,5 +549,98 @@ section {
 
 .file:hover+.tooltip-text {
     display: block;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.32);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    &-pop-up {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 15px;
+        border-radius: 20px;
+        background: #FFF;
+        box-sizing: content-box;
+        padding: 15px;
+        width: 280px;
+
+        @media screen and (min-width: 375px) {
+            width: 325px;
+        }
+
+        @media screen and (min-width: 390px) {
+            padding: 24px;
+            row-gap: 24px;
+            width: 325px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            padding: 48px;
+            width: 556px;
+            row-gap: 32px;
+        }
+    }
+
+    &-text {
+        color: #1B232F;
+        font-weight: 400;
+        line-height: normal;
+
+        @media screen and (min-width: 390px) {
+            font-size: 18px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            color: #0D0D0D;
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+
+    &-btn {
+        color: rgba(13, 13, 13, 1);
+        margin: 0 auto;
+
+        @media screen and (min-width: 320px) {
+            width: 160px;
+            padding: 20px 24px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            padding: 24px 48px;
+            gap: 10px;
+            border-radius: 57px;
+            width: 274px;
+            height: 76px;
+            font-size: 24px;
+        }
+
+        &:before {
+            background: #fff;
+        }
+    }
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+    opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+    transition: opacity 0.5s ease-out;
 }
 </style>

@@ -56,6 +56,19 @@ import { onMounted, ref, unref } from 'vue';
 let swiper = ref(null)
 
 onMounted(() => {
+    window.addEventListener("resize", function () {
+        const windowInnerWidth = window.innerWidth;
+        if (windowInnerWidth < 1024) {
+            for (let i = 0; i < swiper.children.length; i++) {
+                swiper.children[i].classList.add('resized')
+            }
+        } else {
+            for (let i = 0; i < swiper.children.length; i++) {
+                swiper.children[i].classList.remove('resized')
+            }
+        }
+    });
+
     swiper = unref(swiper)
 
     const swiperParams = {
@@ -88,6 +101,16 @@ swiper-slide {
 
     @media screen and (min-width: 375px) {
         width: 80%;
+    }
+}
+
+.resized {
+    @media screen and (min-width: 320px) {
+        width: 94% !important;
+    }
+
+    @media screen and (min-width: 375px) {
+        width: 80% !important;
     }
 }
 

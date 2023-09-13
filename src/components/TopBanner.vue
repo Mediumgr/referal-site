@@ -8,13 +8,22 @@
       <img class="top-banner_image" src="../assets/img/rouble.png" alt="рублей" />
     </div>
     <img class="top-banner_psbLogoImage" src="../assets/img/psblogo.png" alt="logo" />
-    <BaseButton class="custom-btn">Рекомендовать друга</BaseButton>
+    <BaseButton class="custom-btn" @click="scrollTo()">Рекомендовать друга</BaseButton>
     <img class="top-banner_triangleImage" src="../assets/img/trianglelogo.png" alt="logo" />
   </div>
 </template>
 
 <script setup>
-import BaseButton from "./BaseElements/BaseButton.vue"; 
+import BaseButton from "./BaseElements/BaseButton.vue";
+
+const scrollTo = () => {
+  let form = document.querySelector('form')
+  let offsetForm = form.getBoundingClientRect().top
+  let scrollToForm = offsetForm + window.scrollY;
+  window.scrollTo({
+    top: scrollToForm
+  });
+}
 </script>
 
 <style lang="scss" scoped>
@@ -322,6 +331,7 @@ import BaseButton from "./BaseElements/BaseButton.vue";
 
   @media screen and (min-width: 1920px) {
     padding: 27.5px 51px;
+    font-size: 24px;
   }
 }
 </style>

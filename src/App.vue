@@ -19,9 +19,11 @@ import MainPage from "./views/MainPage.vue";
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {

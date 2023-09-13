@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="detailed-images" v-if="userWidth > 1919">
+        <div class="detailed-images" v-if="windowInnerWidth > 1919">
             <div class="detailed-images_colorIcons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="366" viewBox="0 0 400 366" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -800,12 +800,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
-const userWidth = ref(null);
-
+const windowInnerWidth = ref(window.innerWidth);
+console.log('windowInnerWidth', windowInnerWidth.value)
 onMounted(() => {
-    userWidth.value = document.documentElement.clientWidth;
     window.addEventListener("resize", function () {
-        userWidth.value = document.documentElement.clientWidth;
+        windowInnerWidth.value = window.innerWidth;
     });
 });
 </script>

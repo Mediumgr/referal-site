@@ -4,8 +4,6 @@
   </button>
 </template>
 
-<script setup></script>
-
 <style lang="scss" scoped>
 .custom-btn {
   --border-width: 4px;
