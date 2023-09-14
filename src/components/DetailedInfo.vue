@@ -885,10 +885,6 @@
             border-radius: 20px 1px 20px 20px;
         }
 
-        @media screen and (min-width: 390px) {
-            height: 674px;
-        }
-
         @media screen and (min-width: 1024px) {
             height: 440px;
             border-radius: 60px 1px 60px 60px;

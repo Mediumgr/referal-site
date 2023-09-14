@@ -137,16 +137,16 @@ const showHiddenText = (index) => {
 
   @media screen and (min-width: 320px) {
     border-radius: 8px;
-    padding: 2px 12px 2px 12px;
+    padding: 4px 12px;
   }
 
   @media screen and (min-width: 390px) {
     border-radius: 8px;
-    padding: 2px 16px 2px 16px;
+    padding: 4px 16px;
   }
 
   @media screen and (min-width: 1024px) {
-    padding: 2px 30px 2px 24px;
+    padding: 4px 30px 4px 24px;
     border-radius: 12px;
   }
 
@@ -158,6 +158,7 @@ const showHiddenText = (index) => {
     @media screen and (min-width: 320px) {
       display: grid;
       grid-template-columns: 1fr 40px;
+      min-height: 50px;
     }
 
   }

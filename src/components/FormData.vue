@@ -103,7 +103,7 @@
                 <div class="modal" v-if="open">
                     <div class="modal-pop-up">
                         <p class="modal-text">{{ message }}</p>
-                        <BaseButton type="button" class="custom-btn modal-btn" @click="closeModal()">
+                        <BaseButton type="button" class="custom-btn modal-btn" @click.stop="closeModal()">
                             Хорошо
                         </BaseButton>
                     </div>
