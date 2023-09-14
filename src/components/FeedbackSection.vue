@@ -45,7 +45,7 @@
                     </p>
                 </div>
             </swiper-slide>
-            <swiper-slide>
+           <!--  <swiper-slide>
                 <div class="feedback-person">
                     <img src="../assets/img/persontwo.png" alt="person" />
                     <h3 class="feedback-name">Владимир Воротников</h3>
@@ -56,7 +56,7 @@
                         по&nbsp;программе получил.
                     </p>
                 </div>
-            </swiper-slide>
+            </swiper-slide> -->
         </swiper-container>
     </div>
 </template>
@@ -93,7 +93,7 @@ onMounted(() => {
                 spaceBetween: "24",
             },
             1024: {
-                slidesPerView: 4,
+                slidesPerView: 3,
             },
         },
     };
