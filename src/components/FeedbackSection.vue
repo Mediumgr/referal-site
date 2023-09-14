@@ -71,12 +71,12 @@ onMounted(() => {
     window.addEventListener("resize", function () {
         const clientWidth = document.documentElement.clientWidth;
         if (clientWidth < 1024) {
-            for (let i = 0; i < swiper.children.length; i++) {
-                swiper.children[i].classList.add('resized')
+            for (let i = 0; i < swiper?.children?.length; i++) {
+                swiper?.children[i]?.classList.add('resized')
             }
         } else {
-            for (let i = 0; i < swiper.children.length; i++) {
-                swiper.children[i].classList.remove('resized')
+            for (let i = 0; i < swiper?.children?.length; i++) {
+                swiper?.children[i]?.classList.remove('resized')
             }
         }
     });
@@ -94,7 +94,12 @@ onMounted(() => {
             },
             1024: {
                 slidesPerView: 3,
+                spaceBetween: "16",
             },
+           /*  1024: {
+                slidesPerView: 4,
+                spaceBetween: "16",
+            }, */
         },
     };
 
@@ -186,17 +191,20 @@ swiper-slide {
 
         @media screen and (min-width: 320px) {
             border-radius: 20px 20px 0 0;
+            height: 291px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            height: auto;
         }
     }
 
     @media screen and (min-width: 320px) {
         border-radius: 20px;
-        width: 290px;
-        height: 565px;
+        height: 575px;
     }
 
     @media screen and (min-width: 390px) {
-        width: 298px;
         height: 643px;
     }
 
@@ -204,8 +212,11 @@ swiper-slide {
         height: 652px;
     }
 
+    @media screen and (min-width: 1024px) {
+        height: 520px;
+    }
+
     @media screen and (min-width: 1920px) {
-        width: 576px;
         height: 865px;
         border-radius: 40px;
     }
@@ -228,6 +239,11 @@ swiper-slide {
     @media screen and (min-width: 390px) {
         font-size: 20px;
         padding: 12px 29px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        padding: 12px 14px;
+        font-size: 18px;
     }
 
     @media screen and (min-width: 1920px) {
@@ -272,6 +288,11 @@ swiper-slide {
     @media screen and (min-width: 390px) {
         font-size: 18px;
         padding: 0 29px 5px 29px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        font-size: 15px;
+        padding: 0 14px 5px 14px;
     }
 
     @media screen and (min-width: 1920px) {

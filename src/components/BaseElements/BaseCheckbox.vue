@@ -4,7 +4,7 @@
         <label v-if="type === 'file'" for="candidateFile" class="fileLabel"></label>
         <span class="fileName">{{ fileName }}</span>
         <label :for="id" v-if="type === 'checkbox'" class="checkboxLabel">
-            Я&nbsp;даю согласие на&nbsp;обработку моих персональных данных,
+            Я&nbsp;даю согласие на&nbsp;обработку моих персональных данных
             и&nbsp;передачу их&nbsp;в&nbsp;ПАО &laquo;Промсвязьбанк&raquo; для участия
             в&nbsp;программе &quot;Приведи друга в&nbsp;ПСБ Лаб&quot;.
         </label>

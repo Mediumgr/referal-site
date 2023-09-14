@@ -4,7 +4,7 @@
             <h1 class="form-section_title">Заполните формы</h1>
             <p v-if="clientWidth < 1024" class="form-section_step">{{ step }}</p>
             <template v-if="clientWidth < 1024">
-                <transition name="modal-fade">
+                <transition name="form-fade">
                     <form v-if="recommender" @submit.stop.prevent="stepTwo()">
                         <div class="form">
                             <h3 class="form_recommender">Рекомендатель</h3>
@@ -26,7 +26,7 @@
                         </div>
                     </form>
                 </transition>
-                <transition name="modal-fade">
+                <transition name="form-fade">
                     <form v-if="candidate" @submit.stop.prevent="sendData()">
                         <div class="form">
                             <h3 class="form_candidate">Кандидат</h3>
@@ -46,7 +46,8 @@
                             </div>
                         </div>
                         <div class="form-section_btn">
-                            <BaseButton class="custom-btn">Отправить</BaseButton>
+                            <BaseButton class="custom-btn btn" v-if="!loader">Отправить</BaseButton>
+                            <span class="loader" v-if="loader"></span>
                         </div>
                     </form>
                 </transition>
@@ -68,7 +69,8 @@
                                 id="recommender" type="checkbox"></BaseCheckbox>
                         </div>
                         <div class="form-section_btn">
-                            <BaseButton class="custom-btn">Отправить</BaseButton>
+                            <BaseButton class="custom-btn btn" v-if="!loader">Отправить</BaseButton>
+                            <span class="loader" v-if="loader"></span>
                         </div>
                     </form>
                     <form>
@@ -124,6 +126,7 @@ import BaseInput from './BaseElements/BaseInput.vue';
 import { ref, onMounted, unref, watch } from 'vue';
 
 const open = ref(false)
+const loader = ref(false)
 const message = ref('Рекомендация успешно отправлена!')
 const step = ref('Шаг 1');
 const recommender = ref(true);
@@ -182,7 +185,7 @@ const stepTwo = () => {
     ) {
         step.value = 'Шаг 2';
         recommender.value = false;
-        /* 500ms как для .modal-fade-leave-active */
+        /* 500ms как для .form-fade-leave-active */
         setTimeout(() => {
             candidate.value = true;
         }, 500)
@@ -193,7 +196,7 @@ const closeModal = () => {
     open.value = false;
     step.value = 'Шаг 1'
     candidate.value = false;
-    /* 500ms как для .modal-fade-leave-active */
+    /* 500ms как для .form-fade-leave-active */
     setTimeout(() => {
         recommender.value = true;
     }, 500)
@@ -214,7 +217,7 @@ const sendData = async () => {
             isErrors = true
             if (clientWidth.value > 1023 && clientWidth.value < 1920) {
                 if (regExpChecks['candidateFileError'] !== '' || regExpChecks['candidateAgreedError'] !== '') {
-                    candidateForm.value.style.height = '289px'
+                    candidateForm.value.style.height = '302px'
                 }
             }
             break
@@ -222,6 +225,7 @@ const sendData = async () => {
     }
 
     if (isErrors === false) {
+        loader.value = true
         let formData = new FormData();
 
         formData.append('recommender[NAME]', recommenderName.value);
@@ -243,6 +247,7 @@ const sendData = async () => {
             message.value = response.message
         }
         open.value = true;
+        loader.value = false
     }
 };
 
@@ -412,9 +417,14 @@ section {
             justify-content: center;
             align-items: center;
 
+            @media screen and (min-width: 320px) {
+                margin-bottom: 66px;
+            }
+
             @media screen and (min-width: 1024px) {
                 position: relative;
                 left: 245px;
+                margin-bottom: 73px;
             }
 
             @media screen and (min-width: 1920px) {
@@ -506,6 +516,10 @@ section {
         padding: 24px 48px;
         margin-bottom: 96px;
     }
+}
+
+.btn {
+    margin-bottom: 0;
 }
 
 .form-container {
@@ -632,6 +646,54 @@ section {
             background: #fff;
         }
     }
+}
+
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #7f40ff;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 3px solid;
+    color: red;
+    border-color: #ff5940 transparent;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.form-fade-enter-from,
+.form-fade-leave-to {
+    opacity: 0;
+}
+
+.form-fade-enter-active,
+.form-fade-leave-active {
+    transition: opacity 0.5s ease-out;
 }
 
 .modal-fade-enter-from,
