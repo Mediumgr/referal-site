@@ -169,8 +169,8 @@ input[type='file']:hover~.fileLabel:before {
 .fileName {
     position: absolute;
     font-size: 11px;
-    top: 41px;
-    left: -4px;
+    top: 42px;
+    left: 0;
     color: rgb(6, 21, 5);
 
     @media screen and (min-width: 1920px) {

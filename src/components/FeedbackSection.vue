@@ -45,6 +45,18 @@
                     </p>
                 </div>
             </swiper-slide>
+            <swiper-slide>
+                <div class="feedback-person">
+                    <img src="../assets/img/persontwo.png" alt="person" />
+                    <h3 class="feedback-name">Владимир Воротников</h3>
+                    <p class="feedback-text">
+                        Я&nbsp;порекомендовал знакомого с&nbsp;прошлой работы
+                        по&nbsp;программе &quot;Приведи в&nbsp;ИТ&quot;. Он&nbsp;уже прошел
+                        испытательный срок и&nbsp;продолжает работать в&nbsp;банке. Выплату
+                        по&nbsp;программе получил.
+                    </p>
+                </div>
+            </swiper-slide>
         </swiper-container>
     </div>
 </template>
@@ -81,7 +93,7 @@ onMounted(() => {
                 spaceBetween: "24",
             },
             1024: {
-                slidesPerView: 3,
+                slidesPerView: 4,
             },
         },
     };

@@ -442,7 +442,7 @@ section {
     @media screen and (min-width: 1024px) {
         width: 456px;
         border-radius: 20px 20px 20px 1px;
-        padding: 24px 40px 9px;
+        padding: 24px 40px 15px;
     }
 
     @media screen and (min-width: 1920px) {
