@@ -58,8 +58,8 @@ const data = ref([
   },
 ]);
 
-for (let [idx] of Object.entries(data.value)) {
-  checked.value[idx] = false;
+for (let key of Object.entries(data.value)) {
+  checked.value[key] = false;
 }
 
 const showHiddenText = (index) => {

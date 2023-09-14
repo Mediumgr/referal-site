@@ -1,4 +1,5 @@
 <template>
+    n
     <div class="detailed-container">
         <div class="detailed-info">
             <div class="detailed-info_departments_block">
@@ -48,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="detailed-images" v-if="windowInnerWidth > 1919">
+        <div class="detailed-images">
             <div class="detailed-images_colorIcons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="366" viewBox="0 0 400 366" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -797,18 +798,6 @@
     </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
-
-const windowInnerWidth = ref(window.innerWidth);
-console.log('windowInnerWidth', windowInnerWidth.value)
-onMounted(() => {
-    window.addEventListener("resize", function () {
-        windowInnerWidth.value = window.innerWidth;
-    });
-});
-</script>
-
 <style lang="scss" scoped>
 .detailed-container {
     max-width: 100%;
@@ -1144,10 +1133,14 @@ onMounted(() => {
 }
 
 .detailed-images {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: none;
     height: 848px;
+
+    @media screen and (min-width: 1920px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
     &_colorIcons {
         width: 400px;

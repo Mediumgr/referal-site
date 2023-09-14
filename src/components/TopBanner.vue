@@ -1,15 +1,15 @@
 <template>
-  <div class="top-banner">
-    <img class="top-banner_logoImage" src="../assets/img/logo.png" alt="logo" />
-    <h1 class="top-banner_text">Рекомендуй друга в ит получи</h1>
-    <img class="top-banner_arrowImage" src="../assets/img/rightArrow.png" alt="logo" />
-    <div class="top-banner_costs">
-      <h1 class="top-banner_price">100&nbsp;000</h1>
-      <img class="top-banner_image" src="../assets/img/rouble.png" alt="рублей" />
+  <div class="top-header">
+    <img class="top-header_logoImage" src="../assets/img/logo.png" alt="logo" />
+    <h1 class="top-header_text">Рекомендуй друга в ит получи</h1>
+    <img class="top-header_arrowImage" src="../assets/img/rightArrow.png" alt="logo" />
+    <div class="top-header_costs">
+      <h1 class="top-header_price">100&nbsp;000</h1>
+      <img class="top-header_image" src="../assets/img/rouble.png" alt="рублей" />
     </div>
-    <img class="top-banner_psbLogoImage" src="../assets/img/psblogo.png" alt="logo" />
+    <img class="top-header_psbLogoImage" src="../assets/img/psblogo.png" alt="logo" />
     <BaseButton class="custom-btn" @click="scrollTo()">Рекомендовать друга</BaseButton>
-    <img class="top-banner_triangleImage" src="../assets/img/trianglelogo.png" alt="logo" />
+    <img class="top-header_triangleImage" src="../assets/img/trianglelogo.png" alt="logo" />
   </div>
 </template>
 
@@ -21,13 +21,14 @@ const scrollTo = () => {
   let offsetForm = form.getBoundingClientRect().top
   let scrollToForm = offsetForm + window.scrollY;
   window.scrollTo({
-    top: scrollToForm
+    top: scrollToForm,
+    behavior: "smooth"
   });
 }
 </script>
 
 <style lang="scss" scoped>
-.top-banner {
+.top-header {
   max-width: 100%;
   display: grid;
   grid-template-columns: repeat(3, auto);

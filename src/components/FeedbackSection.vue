@@ -57,8 +57,8 @@ let swiper = ref(null)
 
 onMounted(() => {
     window.addEventListener("resize", function () {
-        const windowInnerWidth = window.innerWidth;
-        if (windowInnerWidth < 1024) {
+        const clientWidth = document.documentElement.clientWidth;
+        if (clientWidth < 1024) {
             for (let i = 0; i < swiper.children.length; i++) {
                 swiper.children[i].classList.add('resized')
             }
@@ -185,11 +185,11 @@ swiper-slide {
 
     @media screen and (min-width: 390px) {
         width: 298px;
-        height: 630px;
+        height: 643px;
     }
 
     @media screen and (min-width: 425px) {
-        height: 650px;
+        height: 652px;
     }
 
     @media screen and (min-width: 1920px) {

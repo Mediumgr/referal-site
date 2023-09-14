@@ -2,8 +2,8 @@
     <section>
         <div class="form-section">
             <h1 class="form-section_title">Заполните формы</h1>
-            <p v-if="userWidth < 1024" class="form-section_step">{{ step }}</p>
-            <template v-if="userWidth < 1024">
+            <p v-if="clientWidth < 1024" class="form-section_step">{{ step }}</p>
+            <template v-if="clientWidth < 1024">
                 <transition name="modal-fade">
                     <form v-if="recommender" @submit.stop.prevent="stepTwo()">
                         <div class="form">
@@ -51,7 +51,7 @@
                     </form>
                 </transition>
             </template>
-            <template v-if="userWidth > 1023">
+            <template v-if="clientWidth > 1023">
                 <div class="form-container">
                     <form @submit.stop.prevent="sendData()">
                         <div class="form firstForm">
@@ -159,10 +159,10 @@ const regExp = ref({
     email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
 });
 
-const userWidth = ref(document.documentElement.clientWidth);
+const clientWidth = ref(document.documentElement.clientWidth);
 onMounted(() => {
     window.addEventListener('resize', function () {
-        userWidth.value = document.documentElement.clientWidth;
+        clientWidth.value = document.documentElement.clientWidth;
     });
 });
 
@@ -201,9 +201,9 @@ const closeModal = () => {
 
 const sendData = async () => {
 
-    if (userWidth.value < 1024) {
+    if (clientWidth.value < 1024) {
         validateCandidate();
-    } else if (userWidth.value > 1023) {
+    } else if (clientWidth.value > 1023) {
         validateRecommender();
         validateCandidate();
     }
@@ -212,7 +212,7 @@ const sendData = async () => {
     for (let error in regExpChecks) {
         if (!!regExpChecks[error]) {
             isErrors = true
-            if (userWidth.value > 1023 && userWidth.value < 1920) {
+            if (clientWidth.value > 1023 && clientWidth.value < 1920) {
                 if (regExpChecks['candidateFileError'] !== '' || regExpChecks['candidateAgreedError'] !== '') {
                     candidateForm.value.style.height = '289px'
                 }
@@ -540,7 +540,7 @@ section {
         content: '';
         display: block;
         position: absolute;
-        top: 30px;
+        top: 27px;
         left: 15px;
         border: 18px solid transparent;
         border-top: 20px solid #0d0d0d;
