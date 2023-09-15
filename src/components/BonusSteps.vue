@@ -1,10 +1,6 @@
 <template>
   <section class="section">
-    <div class="neon">
-      <img v-if="clientWidth > 319 && clientWidth < 1024" class="neon_sm" src="../assets/img/neon_sm.png" alt="arrow">
-      <img v-else-if="clientWidth > 1023 && clientWidth < 1920" class="neon_md" src="../assets/img/neon_md.png" alt="arrow">
-      <img v-else-if="clientWidth > 1919" class="neon_big" src="../assets/img/neon_big.png" alt="arrow">
-    </div>
+    <SvgAnimations></SvgAnimations>
     <h1 class="title">6&nbsp;шагов для получения бонуса</h1>
     <div class="section-steps">
       <div class="step stepOne">
@@ -36,15 +32,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
-const clientWidth = ref(document.documentElement.clientWidth)
-
-onMounted(() => {
-  window.addEventListener("resize", function () {
-    clientWidth.value = document.documentElement.clientWidth;
-  });
-});
+import SvgAnimations from './UI/SvgAnimations.vue'
 </script>
 
 <style lang="scss" scoped>
@@ -237,88 +225,5 @@ onMounted(() => {
   @media screen and (min-width: 1024px) {
     justify-self: end;
   }
-}
-
-.colorLine_big {
-  position: absolute;
-  top: 270px;
-  left: 0;
-  height: 520px;
-  fill: none;
-}
-
-.whiteLine_big {
-  position: absolute;
-  top: 280px;
-  left: 0;
-}
-
-.colorLine_small {
-  position: absolute;
-  top: 92px;
-  overflow: inherit;
-  left: -5px;
-
-  @media screen and (min-width: 768px) {
-    top: 111px;
-    left: 187px;
-  }
-}
-
-.whiteLine_small {
-  position: absolute;
-  top: 102px;
-  left: -7px;
-
-  @media screen and (min-width: 768px) {
-    top: 117px;
-    left: 186px;
-  }
-}
-
-.colorLine_middle {
-  position: absolute;
-  top: 121px;
-  left: -13px;
-
-  @media screen and (min-width: 1440px) {
-    top: 117px;
-    left: 186px;
-  }
-}
-
-.whiteLine_middle {
-  position: absolute;
-  top: 130px;
-  left: -15px;
-
-  @media screen and (min-width: 1440px) {
-    top: 127px;
-    left: 186px;
-  }
-}
-
-.neon {
-  position: relative;
-  width: 0;
-
-  &_sm {
-    position: absolute;
-    top: 95px;
-    left: -20px;
-  }
-
-  &_md {
-    position: absolute;
-    top: 138px;
-    left: -45px;
-  }
-
-  &_big {
-    position: absolute;
-    top: 270px;
-    left: -80px;
-  }
-
 }
 </style>

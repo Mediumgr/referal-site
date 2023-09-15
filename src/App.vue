@@ -8,7 +8,7 @@
 import MainPage from "./views/MainPage.vue";
 </script>
 
-<style>
+<style lang="scss">
 @font-face {
   font-family: "GilRoy";
   src: url("./assets/fonts/Gilroy-Medium.ttf");
@@ -40,5 +40,24 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.custom-scroll {
+  scrollbar-width: thin;
+  /* Firefox scrollbar */
+  scrollbar-color: rgb( 255 255 255 / 30%);
+  ;
+  /* Firefox scrollbar */
+  background: #0D0D0D;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    overflow: auto;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgb(255 255 255 / 30%);
+  }
 }
 </style>
