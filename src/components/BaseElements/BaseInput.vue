@@ -3,9 +3,9 @@
         <input :class="['input', error ? 'errorBorder' : '']" :id="label" :type="type" :value="modelValue" v-bind="{
             ...$attrs,
             onInput: ($event) => {
-                $emit('update:modelValue', $event.target.value)
-            }
-        }">
+                $emit('update:modelValue', $event.target.value);
+            },
+        }" />
         <label :for="label" :class="['label', modelValue !== '' ? 'holdLabel' : '']">{{ text }}</label>
         <span class="errorText" v-if="error">{{ error }}</span>
     </div>
@@ -39,7 +39,6 @@ const props = defineProps({
 
 </script>
 
-
 <style lang="scss" scoped>
 .input-section {
     position: relative;
@@ -49,7 +48,6 @@ const props = defineProps({
     @media screen and (min-width: 1920px) {
         padding: 20px 20px 30px 0;
     }
-
 }
 
 .input {
@@ -76,8 +74,6 @@ const props = defineProps({
         @media screen and (min-width: 1024px) {
             font-size: 16px;
         }
-
-
     }
 }
 
@@ -94,7 +90,6 @@ const props = defineProps({
         font-size: 32px;
         top: 30px;
     }
-
 }
 
 .holdLabel {
@@ -116,6 +111,6 @@ const props = defineProps({
 }
 
 .errorBorder {
-    border-bottom: 2px solid rgba(255, 56, 25, 1)
+    border-bottom: 2px solid rgba(255, 56, 25, 1);
 }
 </style>

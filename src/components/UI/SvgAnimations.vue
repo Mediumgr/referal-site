@@ -143,7 +143,7 @@ onMounted(() => {
                 stroke: url(#paint0_linear_507_980);
                 stroke-width: 4px;
                 stroke-dasharray: 800;
-                stroke-dashoffset: 800;
+                stroke-dashoffset: 850;
                 animation: animate 2s linear infinite;
             }
         }
@@ -158,7 +158,7 @@ onMounted(() => {
                 stroke-opacity: 0.8;
                 stroke-width: 2px;
                 stroke-dasharray: 800;
-                stroke-dashoffset: 800;
+                stroke-dashoffset: 850;
                 animation: animate 2s linear infinite;
             }
         }
@@ -182,7 +182,7 @@ onMounted(() => {
                 stroke: url(#paint0_linear_507_285);
                 stroke-width: 12px;
                 stroke-dasharray: 5000;
-                stroke-dashoffset: 5000;
+                stroke-dashoffset: 6000;
                 animation: animate 2s linear infinite;
             }
         }
@@ -197,7 +197,7 @@ onMounted(() => {
                 stroke-opacity: 0.8;
                 stroke-width: 2px;
                 stroke-dasharray: 5000;
-                stroke-dashoffset: 5000;
+                stroke-dashoffset: 6000;
                 animation: animate 2s linear infinite;
             }
         }
@@ -221,7 +221,7 @@ onMounted(() => {
                 stroke: url(#paint0_linear_87_180);
                 stroke-width: 12px;
                 stroke-dasharray: 5000;
-                stroke-dashoffset: 5000;
+                stroke-dashoffset: 5500;
                 animation: animate 2s linear infinite;
             }
         }
@@ -236,7 +236,7 @@ onMounted(() => {
                 stroke-opacity: 0.8;
                 stroke-width: 2px;
                 stroke-dasharray: 5000;
-                stroke-dashoffset: 5000;
+                stroke-dashoffset: 5500;
                 animation: animate 2s linear infinite;
             }
         }

@@ -46,8 +46,6 @@ body {
   scrollbar-width: thin;
   /* Firefox scrollbar */
   scrollbar-color: rgb( 255 255 255 / 30%);
-  ;
-  /* Firefox scrollbar */
   background: #0D0D0D;
 
   &::-webkit-scrollbar {
