@@ -45,8 +45,13 @@ const props = defineProps({
     padding: 14px 14px 14px 0;
     height: 52px;
 
+    @media screen and (min-width: 1024px) {
+        margin-bottom: 12px;
+    }
+
     @media screen and (min-width: 1920px) {
-        padding: 20px 20px 30px 0;
+        padding: 0;
+        margin-bottom: 42px;
     }
 }
 
@@ -88,7 +93,7 @@ const props = defineProps({
 
     @media screen and (min-width: 1920px) {
         font-size: 32px;
-        top: 30px;
+        top: 12px;
     }
 }
 

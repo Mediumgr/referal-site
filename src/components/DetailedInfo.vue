@@ -831,17 +831,13 @@
     flex-direction: column;
     justify-content: space-between;
 
-    @media screen and (min-width: 320px) {
-        row-gap: 22px;
-    }
-
     @media screen and (min-width: 390px) {
         width: 373px;
     }
 
     @media screen and (min-width: 1024px) {
         width: 944px;
-        row-gap: 40px;
+        grid-gap: 40px;
     }
 
     @media screen and (min-width: 1920px) {
@@ -857,6 +853,7 @@
             width: 310px;
             padding: 16px 7px 16px;
             border-radius: 20px 20px 1px 20px;
+            margin-bottom: 22px;
         }
 
         @media screen and (min-width: 375px) {
@@ -867,6 +864,7 @@
             width: 944px;
             border-radius: 60px 60px 1px 60px;
             padding: 40px 17px 40px 30px;
+            margin-bottom: 0;
         }
 
         @media screen and (min-width: 1920px) {

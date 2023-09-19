@@ -45,18 +45,17 @@
                     </p>
                 </div>
             </swiper-slide>
-           <!--  <swiper-slide>
+            <swiper-slide>
                 <div class="feedback-person">
-                    <img src="../assets/img/persontwo.png" alt="person" />
-                    <h3 class="feedback-name">Владимир Воротников</h3>
+                    <img src="../assets/img/personfour.png" alt="person" />
+                    <h3 class="feedback-name">Дмитрий Стафеев</h3>
                     <p class="feedback-text">
-                        Я&nbsp;порекомендовал знакомого с&nbsp;прошлой работы
-                        по&nbsp;программе &quot;Приведи в&nbsp;ИТ&quot;. Он&nbsp;уже прошел
-                        испытательный срок и&nbsp;продолжает работать в&nbsp;банке. Выплату
-                        по&nbsp;программе получил.
+                        Я&nbsp;порекомендовал двоих своих знакомых в&nbsp;ПСБ. Мне нравится, что в&nbsp;можно так приводить
+                        в&nbsp;команду классных экспертов. Ребята работают с&nbsp;мая 2023&nbsp;г. Выплаты получил
+                        в&nbsp;указанные сроки.
                     </p>
                 </div>
-            </swiper-slide> -->
+            </swiper-slide>
         </swiper-container>
     </div>
 </template>
@@ -65,6 +64,7 @@
 import { register } from 'swiper/element/bundle';
 register();
 import { onMounted, ref, unref } from 'vue';
+
 let swiper = ref(null)
 
 onMounted(() => {
@@ -93,13 +93,9 @@ onMounted(() => {
                 spaceBetween: "24",
             },
             1024: {
-                slidesPerView: 3,
-                spaceBetween: "16",
-            },
-           /*  1024: {
                 slidesPerView: 4,
                 spaceBetween: "16",
-            }, */
+            },
         },
     };
 

@@ -1,5 +1,5 @@
 <template>
-    <div v-bind="$attrs">
+    <div class="checkbox-container">
         <input :id="id" :type="type" :checked="modelValue" @change="change($event)" />
         <label v-if="type === 'file'" for="candidateFile" class="fileLabel"></label>
         <span class="fileName">{{ fileName }}</span>
@@ -62,15 +62,14 @@ const errorClass = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-input[type='checkbox'] {
-    position: absolute;
-    z-index: -10;
-    opacity: 0;
+.checkbox-container {
+    position: relative;
 }
 
+input[type='checkbox'],
 input[type='file'] {
     position: absolute;
-    z-index: -1;
+    z-index: -10;
     opacity: 0;
 }
 
@@ -83,8 +82,8 @@ input[type='file']~.fileLabel::before {
     flex-shrink: 0;
     flex-grow: 0;
     text-align: center;
-    cursor: pointer;
     margin-right: 12px;
+    cursor: pointer;
     background: #fff;
     outline: 2px solid rgba(17, 17, 17, 1);
     background-repeat: no-repeat;
@@ -113,7 +112,7 @@ input[type='checkbox']:checked~.checkboxLabel::before {
     line-height: 1.3;
 
     @media screen and (min-width: 320px) {
-        font-size: 8px;
+        padding-top: 14px;
     }
 
     @media screen and (min-width: 375px) {
@@ -122,20 +121,30 @@ input[type='checkbox']:checked~.checkboxLabel::before {
 
     @media screen and (min-width: 1024px) {
         font-size: 12px;
+        padding-top: 11px;
     }
 
     @media screen and (min-width: 1920px) {
-        font-size: 18px;
+        font-size: 19px;
+        padding-top: 0;
         padding-bottom: 24px;
         align-items: center;
     }
 }
 
+label[for="candidate"] {
+    padding-top: 0;
+}
+
 input[type='file']~.fileLabel:before {
     background-image: url('/src/assets/img/pinblack.png');
     position: relative;
-    top: 2px;
+    top: -4px;
     left: 1px;
+
+    @media screen and (min-width: 375px) {
+        top: 2px;
+    }
 
     @media screen and (min-width: 1024px) {
         top: -1px;
@@ -169,61 +178,109 @@ input[type='file']:hover~.fileLabel:before {
 .fileName {
     position: absolute;
     font-size: 11px;
-    top: 42px;
+    top: 45px;
     left: 0;
     color: rgb(6, 21, 5);
 
+    @media screen and (min-width: 320px) {
+        font-size: 11px;
+        top: 40px;
+        left: 6px;
+    }
+
+    @media screen and (min-width: 375px) {
+        top: 42px;
+    }
+
     @media screen and (min-width: 1920px) {
-        top: 66px;
+        top: 56px;
+        font-size: 17px;
     }
 }
 
 .error {
-    position: relative;
+    position: absolute;
     top: 3px;
     left: 4px;
     color: rgb(255, 56, 25);
     font-size: 10px;
 
+    @media screen and (min-width: 320px) {
+        top: 55px;
+    }
+
+    @media screen and (min-width: 375px) {
+        left: 51px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        top: 60px;
+    }
+
     @media screen and (min-width: 1920px) {
-        position: relative;
-        top: -15px;
-        left: 4px;
-        color: rgb(255, 56, 25);
+        top: 65px;
+        left: 70px;
         font-size: 22px;
     }
 }
 
 .errorCandidateFile {
     position: absolute;
-    left: 7px;
-    bottom: -11px;
-    font-size: 9px;
+    left: 2px;
+    bottom: -6px;
+    font-size: 8px;
+    width: 70px;
     color: rgba(255, 56, 25, 1);
 
+    @media screen and (min-width: 375px) {
+        left: 5px;
+        bottom: -9px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 100px;
+        left: 0;
+        bottom: -10px;
+        font-size: 10px;
+    }
+
     @media screen and (min-width: 1920px) {
-        position: absolute;
-        left: -32px;
-        bottom: -1px;
-        font-size: 20px;
-        color: rgb(255, 56, 25);
+        width: 143px;
+        left: 0;
+        bottom: -11px;
+        font-size: 17px;
     }
 
 }
 
 .errorCandidate {
     position: absolute;
-    bottom: -11px;
-    font-size: 9px;
-    left: 101px;
+    bottom: -8px;
+    font-size: 7px;
+    left: 34px;
     color: rgba(255, 56, 25, 1);
 
+    @media screen and (min-width: 375px) {
+        bottom: -11px;
+        font-size: 8px;
+        left: 46px;
+    }
+
+    @media screen and (min-width: 390px) {
+        bottom: -12px;
+        font-size: 9px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        left: 52px;
+        bottom: -21px;
+        font-size: 10px;
+    }
+
     @media screen and (min-width: 1920px) {
-        position: absolute;
-        bottom: 13px;
-        font-size: 21px;
-        left: 147px;
-        color: rgb(255, 56, 25);
+        bottom: 3px;
+        font-size: 20px;
+        left: 83px;
     }
 }
 </style>

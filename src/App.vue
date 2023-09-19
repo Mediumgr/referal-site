@@ -24,6 +24,21 @@ html,
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 30%);
+  background: #0D0D0D;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    overflow: auto;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgb(255 255 255 / 30%);
+  }
 }
 
 body {
@@ -40,22 +55,5 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
-}
-
-.custom-scroll {
-  scrollbar-width: thin;
-  /* Firefox scrollbar */
-  scrollbar-color: rgb( 255 255 255 / 30%);
-  background: #0D0D0D;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    overflow: auto;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background: rgb(255 255 255 / 30%);
-  }
 }
 </style>
