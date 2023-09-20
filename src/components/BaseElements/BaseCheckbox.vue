@@ -40,10 +40,9 @@ const change = async (event) => {
     if (props.type === 'checkbox') {
         emit('update:modelValue', event.target.checked);
     } else {
+        fileName.value = 'файл загружен'
         const file = event.target.files[0];
-        if (!file) return;
-        fileName.value = file.name.split('\\').pop()
-        emit('update:modelValue', { fileName, file });
+        emit('update:modelValue', { file });
     }
 }
 
@@ -130,7 +129,6 @@ input[type='checkbox']:checked~.checkboxLabel::before {
         font-size: 19px;
         padding-top: 0;
         padding-bottom: 24px;
-        align-items: center;
     }
 }
 
@@ -141,19 +139,10 @@ label[for="candidate"] {
 input[type='file']~.fileLabel:before {
     background-image: url('/src/assets/img/pinblack.png');
     position: relative;
-    top: -1px;
-    left: 1px;
-
-    @media screen and (min-width: 375px) {
-        top: 2px;
-    }
-
-    @media screen and (min-width: 1024px) {
-        top: -1px;
-    }
+    top: 0;
+    left: 0;
 
     @media screen and (min-width: 1920px) {
-        top: -10px;
         background-image: url('/src/assets/img/pinblackBig.png');
     }
 }
@@ -183,20 +172,16 @@ input[type='file']:hover~.fileLabel:before {
     top: 45px;
     left: 0;
     color: rgb(6, 21, 5);
+    width: 150px;
 
     @media screen and (min-width: 320px) {
-        font-size: 11px;
-        top: 40px;
-        left: 6px;
-    }
-
-    @media screen and (min-width: 375px) {
         top: 42px;
+        font-size: 11px;
     }
 
     @media screen and (min-width: 1920px) {
-        top: 56px;
-        font-size: 17px;
+        top: 65px;
+        font-size: 18px;
     }
 }
 
@@ -247,7 +232,7 @@ input[type='file']:hover~.fileLabel:before {
     @media screen and (min-width: 1920px) {
         width: 143px;
         left: 0;
-        bottom: -11px;
+        bottom: -30px;
         font-size: 17px;
     }
 

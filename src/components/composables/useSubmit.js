@@ -62,7 +62,7 @@ export const useSubmit = async (options) => {
     formData.append('candidate[NAME]', candidateName.value);
     formData.append('candidate[EMAIL]', candidateEmail.value);
     formData.append('candidate[PHONE]', candidatePhone.value);
-    formData.append('userfile', file.value.file, file.value.fileName);
+    formData.append('userfile', file.value.file);
 
     let res = await fetch('/upload/', {
       method: 'POST',

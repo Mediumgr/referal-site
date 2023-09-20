@@ -20,11 +20,14 @@ import MainPage from "./views/MainPage.vue";
   box-sizing: border-box;
 }
 
+input:active {
+  font-size: 16px; // disable iphone zoom
+}
+
 html,
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  
   /* Firefox scrollbar */
   scrollbar-width: thin;
   scrollbar-color: rgb(255 255 255 / 30%);

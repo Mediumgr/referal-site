@@ -336,7 +336,7 @@ section {
 .flexCheckBoxes {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     position: relative;
     top: 4px;
 
