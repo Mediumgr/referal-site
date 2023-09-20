@@ -141,7 +141,7 @@ label[for="candidate"] {
 input[type='file']~.fileLabel:before {
     background-image: url('/src/assets/img/pinblack.png');
     position: relative;
-    top: -4px;
+    top: -1px;
     left: 1px;
 
     @media screen and (min-width: 375px) {
@@ -208,7 +208,7 @@ input[type='file']:hover~.fileLabel:before {
     font-size: 10px;
 
     @media screen and (min-width: 320px) {
-        top: 55px;
+        top: 57px;
     }
 
     @media screen and (min-width: 375px) {
@@ -229,20 +229,18 @@ input[type='file']:hover~.fileLabel:before {
 .errorCandidateFile {
     position: absolute;
     left: 2px;
-    bottom: -6px;
+    bottom: -10px;
     font-size: 8px;
     width: 70px;
     color: rgba(255, 56, 25, 1);
 
     @media screen and (min-width: 375px) {
-        left: 5px;
-        bottom: -9px;
+        left: 0;
     }
 
     @media screen and (min-width: 1024px) {
         width: 100px;
         left: 0;
-        bottom: -10px;
         font-size: 10px;
     }
 
@@ -257,13 +255,12 @@ input[type='file']:hover~.fileLabel:before {
 
 .errorCandidate {
     position: absolute;
-    bottom: -8px;
+    bottom: -9px;
     font-size: 7px;
     left: 34px;
     color: rgba(255, 56, 25, 1);
 
     @media screen and (min-width: 375px) {
-        bottom: -11px;
         font-size: 8px;
         left: 46px;
     }
