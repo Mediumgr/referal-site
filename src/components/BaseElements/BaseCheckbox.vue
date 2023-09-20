@@ -109,7 +109,7 @@ input[type='checkbox']:checked~.checkboxLabel::before {
     align-items: start;
     color: #1B232F;
     font-family: 'Inter';
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 500;
     line-height: 1.3;
 
