@@ -69,6 +69,7 @@ const errorClass = computed(() => {
 input[type='checkbox'],
 input[type='file'] {
     position: absolute;
+    top: 30px;
     z-index: -10;
     opacity: 0;
 }
@@ -105,6 +106,7 @@ input[type='checkbox']:checked~.checkboxLabel::before {
 
 .checkboxLabel {
     display: flex;
+    align-items: start;
     color: #1B232F;
     font-family: 'Inter';
     font-size: 10px;
