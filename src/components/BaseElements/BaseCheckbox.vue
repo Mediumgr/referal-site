@@ -113,10 +113,7 @@ input[type='checkbox']:checked~.checkboxLabel::before {
     font-size: 9px;
     font-weight: 500;
     line-height: 1.3;
-
-    @media screen and (min-width: 320px) {
-        padding-top: 14px;
-    }
+    padding-top: 14px;
 
     @media screen and (min-width: 375px) {
         font-size: 10px;
@@ -137,7 +134,7 @@ input[type='checkbox']:checked~.checkboxLabel::before {
 .fileLabel {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 9px;
     padding-top: 11px;
 
     @media screen and (min-width: 1920px) {
@@ -149,9 +146,6 @@ input[type='checkbox']:checked~.checkboxLabel::before {
 
 input[type='file']~.fileLabel:before {
     background-image: url('/src/assets/img/pinblack.png');
-    position: relative;
-    top: 0;
-    left: 0;
 
     @media screen and (min-width: 1920px) {
         background-image: url('/src/assets/img/pinblackBig.png');
