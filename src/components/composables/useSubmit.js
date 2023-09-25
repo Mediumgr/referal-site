@@ -45,7 +45,6 @@ export const useSubmit = async (options) => {
 
   let isError = false;
   checked.value.some((check) => {
-    debugger;
     if (check === false) {
       isError = true;
       return true;
