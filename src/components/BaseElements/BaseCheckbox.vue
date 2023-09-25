@@ -172,14 +172,10 @@ input[type='file']:hover~.fileLabel:before {
 }
 
 .fileName {
-    font-size: 11px;
+    font-size: 10px;
     color: rgb(6, 21, 5);
     white-space: nowrap;
     color: green;
-
-    @media screen and (min-width: 320px) {
-        font-size: 11px;
-    }
 
     @media screen and (min-width: 1920px) {
         font-size: 22px;
@@ -196,12 +192,8 @@ input[type='file']:hover~.fileLabel:before {
 }
 
 .errorCandidateFile {
-    font-size: 8px;
     color: rgba(255, 56, 25, 1);
-
-    @media screen and (min-width: 1024px) {
-        font-size: 10px;
-    }
+    font-size: 10px;
 
     @media screen and (min-width: 1920px) {
         font-size: 22px;
@@ -211,18 +203,7 @@ input[type='file']:hover~.fileLabel:before {
 
 .errorCandidate {
     color: rgba(255, 56, 25, 1);
-
-    @media screen and (min-width: 375px) {
-        font-size: 8px;
-    }
-
-    @media screen and (min-width: 390px) {
-        font-size: 9px;
-    }
-
-    @media screen and (min-width: 1024px) {
-        font-size: 10px;
-    }
+    font-size: 10px;
 
     @media screen and (min-width: 1920px) {
         font-size: 22px;
