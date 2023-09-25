@@ -4,7 +4,6 @@
         <label v-if="type === 'file'" for="candidateFile" :class="['fileLabel', uploaded ? 'fileUploaded' : '']">
             {{ fileText }}
         </label>
-        <!-- <span v-if="type === 'file'" class="fileName">{{ fileName }}</span> -->
         <label :for="id" v-if="type === 'checkbox'" class="checkboxLabel">
             <label :for="id">
                 <slot></slot>
