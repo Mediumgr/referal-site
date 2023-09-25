@@ -1,8 +1,10 @@
 <template>
     <div class="checkbox-container">
         <input :id="id" :type="type" :checked="modelValue" @change="change($event)" />
-        <label v-if="type === 'file'" for="candidateFile" class="fileLabel">Резюме</label>
-        <span v-if="type === 'file'" class="fileName">{{ fileName }}</span>
+        <label v-if="type === 'file'" for="candidateFile" :class="['fileLabel', uploaded ? 'fileUploaded' : '']">
+            {{ fileText }}
+        </label>
+        <!-- <span v-if="type === 'file'" class="fileName">{{ fileName }}</span> -->
         <label :for="id" v-if="type === 'checkbox'" class="checkboxLabel">
             <label :for="id">
                 <slot></slot>
@@ -34,13 +36,15 @@ const props = defineProps({
         required: false,
     },
 });
-const fileName = ref('')
+const fileText = ref('Загрузите резюме')
+const uploaded = ref(false)
 
 const change = async (event) => {
     if (props.type === 'checkbox') {
         emit('update:modelValue', event.target.checked);
     } else {
-        fileName.value = 'файл загружен'
+        fileText.value = 'файл загружен'
+        uploaded.value = true
         const file = event.target.files[0];
         emit('update:modelValue', { file });
     }
@@ -165,10 +169,8 @@ input[type='file']:hover~.fileLabel:before {
     }
 }
 
-.fileName {
+.fileUploaded {
     font-size: 10px;
-    color: rgb(6, 21, 5);
-    white-space: nowrap;
     color: green;
 
     @media screen and (min-width: 1920px) {
