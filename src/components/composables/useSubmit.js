@@ -43,16 +43,18 @@ export const useSubmit = async (options) => {
     useValidateC(optionsCandidate);
   }
 
-  let isErrors = false;
-  for (let error in regExpChecks.value) {
-    if (!!regExpChecks.value[error]) {
-      isErrors = true;
-      break;
+  let isError = false;
+  checked.value.some((check) => {
+    debugger;
+    if (check === false) {
+      isError = true;
+      return true;
     }
-  }
+  });
 
-  if (isErrors === false) {
+  if (isError === false) {
     loader.value = true;
+    let agreementSign = checked.value[2] === true ? 1 : 0;
 
     let formData = new FormData();
 
@@ -63,6 +65,7 @@ export const useSubmit = async (options) => {
     formData.append('candidate[EMAIL]', candidateEmail.value);
     formData.append('candidate[PHONE]', candidatePhone.value);
     formData.append('userfile', file.value.file);
+    formData.append('recommender[check_order]', agreementSign);
 
     let res = await fetch('/upload/', {
       method: 'POST',
