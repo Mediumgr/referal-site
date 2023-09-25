@@ -8,17 +8,36 @@
                     <form v-if="recommender" @submit.stop.prevent="stepTwo()" class="form_recommender">
                         <div class="form firstForm">
                             <h3 class="form_recommender_title">Рекомендатель</h3>
-                            <BaseInput v-model="recommenderName" type="text" :error="regExpChecks['recommenderNameError']"
+                            <BaseInput v-model="recommenderName" type="text" :error="regExpChecks['recommenderName']"
                                 label="text" text="Имя и&nbsp;фамилия">
                             </BaseInput>
-                            <BaseInput v-model="recommenderEmail" type="email"
-                                :error="regExpChecks['recommenderEmailError']" label="email" text="Email">
+                            <BaseInput v-model="recommenderEmail" type="email" :error="regExpChecks['recommenderEmail']"
+                                label="email" text="Email">
                             </BaseInput>
-                            <BaseInput v-model="recommenderPhone" type="tel" :error="regExpChecks['recommenderPhoneError']"
+                            <BaseInput v-model="recommenderPhone" type="tel" :error="regExpChecks['recommenderPhone']"
                                 label="tel" text="Номер телефона">
                             </BaseInput>
-                            <BaseCheckbox v-model="checked[0]" type="checkbox"
-                                :error="regExpChecks['recommenderAgreedError']" id="recommender">
+                            <BaseCheckbox v-model="checked[0]" :error="regExpChecks['recommenderParticipation']"
+                                type="checkbox" id="participation">
+                                Я&nbsp;даю согласие на&nbsp;участие в&nbsp;Программе &#171;Приведи друга
+                                в&nbsp;ИТ&#187;&nbsp;ООО &#171;ПСБ Лаб&#187;, с&nbsp;условиями
+                                <a href="/docs/rules.docx" target="_blank" download>Программы</a> ознакомлен
+                            </BaseCheckbox>
+                            <BaseCheckbox v-model="checked[1]" :error="regExpChecks['recommenderProcessing']"
+                                type="checkbox" id="processing">
+                                Я&nbsp;даю свое согласие на&nbsp;обработку своих персональных данных ООО &#171;ПСБ Лаб&#187;
+                                в&nbsp;ПАО &#171;Промсвязьбанк&#187;. С&nbsp;&#171;<a href="/docs/confirm_recomend.docx"
+                                    target="_blank" download>Согласием</a>
+                                на&nbsp;обработку персональных данных Рекомендателя Программы &#171;Приведи друга
+                                в&nbsp;ИТ&#187;&nbsp;ООО &#171;ПСБ Лаб&#187;
+                                ознакомлен
+                            </BaseCheckbox>
+                            <BaseCheckbox v-model="checked[2]" :error="regExpChecks['recommenderSigning']" type="checkbox"
+                                id="signing">
+                                Я&nbsp;даю согласие на&nbsp;подписание договора об&nbsp;оказании услуг для выплаты
+                                вознаграждения простой электронной подписью и&nbsp;предоставление данных для его заключения,
+                                если рекомендованный мною Кандидат будет принят на&nbsp;работу и&nbsp;успешно пройдет
+                                испытательный срок в&nbsp;ООО &#171;ПСБ Лаб&#187;
                             </BaseCheckbox>
                         </div>
                         <div v-if="clientWidth < 1024" class="form-section_btn">
@@ -28,26 +47,36 @@
                 </transition>
                 <transition name="form-fade">
                     <form v-if="candidate" @submit.stop.prevent="sendData()" class="form_candidate">
-                        <div class="form">
+                        <div class="form secondForm">
                             <h3 class="form_candidate_title">Кандидат</h3>
-                            <BaseInput v-model="candidateName" type="text" :error="regExpChecks['candidateNameError']"
+                            <BaseInput v-model="candidateName" type="text" :error="regExpChecks['candidateName']"
                                 label="text" text="Имя и&nbsp;фамилия">
                             </BaseInput>
-                            <BaseInput v-model="candidateEmail" type="email" :error="regExpChecks['candidateEmailError']"
+                            <BaseInput v-model="candidateEmail" type="email" :error="regExpChecks['candidateEmail']"
                                 label="email" text="Email"></BaseInput>
-                            <BaseInput v-model="candidatePhone" type="tel" :error="regExpChecks['candidatePhoneError']"
+                            <BaseInput v-model="candidatePhone" type="tel" :error="regExpChecks['candidatePhone']"
                                 label="tel" text="Номер телефона"></BaseInput>
-                            <div class="flexCheckBoxes">
-                                <BaseCheckbox v-model="file" :error="regExpChecks['candidateFileError']" id="candidateFile"
-                                    type="file" class="file"></BaseCheckbox>
-                                <span class="tooltip-text">Прикрепить резюме не более 5МБ</span>
-                                <BaseCheckbox v-model="checked[1]" :error="regExpChecks['candidateAgreedError']"
-                                    id="candidate" type="checkbox"></BaseCheckbox>
-                            </div>
-                            <!-- <div class="g-recaptcha" data-sitekey="6LeA-xgoAAAAAFT0Z268J8hUbytDfvGwbMs3GaJc"
+                            <BaseCheckbox v-model="checked[3]" :error="regExpChecks['candidateParticipation']"
+                                type="checkbox" id="candidateParticipation">
+                                Я&nbsp;даю согласие на&nbsp;участие в&nbsp;Программе &#171;Приведи друга
+                                в&nbsp;ИТ&#187;&nbsp;ООО &#171;ПСБ Лаб&#187;, с&nbsp;условиями <a href="/docs/rules.docx"
+                                    target="_blank" download>Программы</a> ознакомлен
+                            </BaseCheckbox>
+                            <BaseCheckbox v-model="checked[4]" :error="regExpChecks['candidateProcessing']" type="checkbox"
+                                id="candidateProcessing">
+                                Я&nbsp;даю свое согласие на&nbsp;обработку своих персональных данных ООО &#171;ПСБ
+                                Лаб&#187; в&nbsp;ПАО &#171;Промсвязьбанк&#187;. С&nbsp;&#171;<a
+                                    href="/docs/confirm_candidate.docx" target="_blank" download>Согласием</a>
+                                на&nbsp;обработку персональных данных Кандидата Программы &#171;Приведи друга
+                                в&nbsp;ИТ&#187;&nbsp;ООО &#171;ПСБ Лаб&#187; ознакомлен
+                            </BaseCheckbox>
+                            <BaseCheckbox v-model="file" :error="regExpChecks['candidateFile']" id="candidateFile"
+                                type="file" class="file"></BaseCheckbox>
+                            <span class="tooltip-text">Прикрепить резюме не более 5МБ</span>
+                        </div>
+                        <!-- <div class="g-recaptcha" data-sitekey="6LeA-xgoAAAAAFT0Z268J8hUbytDfvGwbMs3GaJc"
                                 data-callback="getRecaptchaToken">
                             </div> -->
-                        </div>
                         <div class="form-section_btn">
                             <BaseButton class="custom-btn" v-if="!loader">Отправить</BaseButton>
                             <span class="loader" v-if="loader"></span>
@@ -69,8 +98,11 @@
             </transition>
         </Teleport>
         <footer class="footer">
-            Юридический дисклеймер о&nbsp;ПСБ Лаб (правила акции, ссылки
-            на&nbsp;юридические документы, сноски по&nbsp;тексту)
+            Юридический дисклеймер: <a href="/docs/rules.docx" class="link" target="_blank" download>Правила программы</a>,
+            <a href="/docs/confirm_recomend.docx" class="link" target="_blank" download>Согласие</a> на&nbsp;обработку
+            персональных
+            данных Рекомендателя, <a href="/docs/confirm_candidate.docx" class="link" target="_blank" download>Согласие</a>
+            на&nbsp;обработку персональных данных Кандидата.
         </footer>
     </section>
 </template>
@@ -90,7 +122,7 @@ const message = ref("Рекомендация успешно отправлен�
 const step = ref("Шаг 1");
 const recommender = ref(true);
 const candidate = ref(false);
-const checked = ref([false, false]);
+const checked = ref([false, false, false, false, false]);
 const file = ref({});
 const recommenderName = ref("");
 const recommenderEmail = ref("");
@@ -98,17 +130,7 @@ const recommenderPhone = ref("");
 const candidateName = ref("");
 const candidateEmail = ref("");
 const candidatePhone = ref("");
-let regExpChecks = ref({
-    recommenderNameError: "",
-    recommenderEmailError: "",
-    recommenderPhoneError: "",
-    recommenderAgreedError: "",
-    candidateNameError: "",
-    candidateEmailError: "",
-    candidatePhoneError: "",
-    candidateFileError: "",
-    candidateAgreedError: "",
-});
+let regExpChecks = ref({});
 const regExp = ref({
     name: /^([а-яё\s]+|[a-z\s]+)$/iu,
     phone: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
@@ -285,6 +307,17 @@ section {
     }
 }
 
+.secondForm {
+
+    @media screen and (min-width: 1024px) {
+        padding: 25px 40px 61px 40px !important;
+    }
+
+    @media screen and (min-width: 1920px) {
+        padding: 25px 40px 66px 40px !important;
+    }
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -301,17 +334,13 @@ section {
         width: 456px;
         border-radius: 40px 40px 40px 1px;
         padding: 25px 40px;
-    }
-
-    @media screen and (min-width: 1920px) {
-        border-radius: 100px 100px 100px 1px;
+        margin-bottom: 70px;
     }
 
     @media screen and (min-width: 1920px) {
         width: 848px;
-        height: 564px;
         justify-content: space-between;
-        margin-bottom: 60px;
+        border-radius: 100px 100px 100px 1px;
     }
 
     &_recommender_title,
@@ -333,25 +362,8 @@ section {
     }
 }
 
-.flexCheckBoxes {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    position: relative;
-    top: 4px;
-
-    @media screen and (min-width: 320px) {
-        padding-top: 14px;
-    }
-
-    @media screen and (min-width: 1024px) {
-        padding-top: 11px;
-    }
-
-    @media screen and (min-width: 1920px) {
-        padding-top: 0;
-        top: 0;
-    }
+.link {
+    color: #a1a1a1;
 }
 
 .footer {

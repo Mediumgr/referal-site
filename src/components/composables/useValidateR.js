@@ -13,25 +13,36 @@ export const useValidateR = (optionsValidations) => {
   regExpChecks = unref(regExpChecks);
 
   if (regExp.value.name.test(recommenderName.value)) {
-    regExpChecks['recommenderNameError'] = '';
+    regExpChecks['recommenderName'] = '';
   } else {
-    regExpChecks['recommenderNameError'] = 'Введите корректное имя';
+    regExpChecks['recommenderName'] = 'Введите корректное имя';
   }
   if (regExp.value.email.test(recommenderEmail.value)) {
-    regExpChecks['recommenderEmailError'] = '';
+    regExpChecks['recommenderEmail'] = '';
   } else {
-    regExpChecks['recommenderEmailError'] = 'Введите корректный email';
+    regExpChecks['recommenderEmail'] = 'Введите корректный email';
   }
   if (regExp.value.phone.test(recommenderPhone.value)) {
-    regExpChecks['recommenderPhoneError'] = '';
+    regExpChecks['recommenderPhone'] = '';
   } else {
-    regExpChecks['recommenderPhoneError'] = 'Введите корректный телефон';
+    regExpChecks['recommenderPhone'] = 'Введите корректный телефон';
   }
   if (checked.value[0]) {
-    regExpChecks['recommenderAgreedError'] = '';
+    regExpChecks['recommenderParticipation'] = '';
   } else {
-    regExpChecks['recommenderAgreedError'] =
+    regExpChecks['recommenderParticipation'] =
+      'Подтвердите согласие на участие в программе';
+  }
+  if (checked.value[1]) {
+    regExpChecks['recommenderProcessing'] = '';
+  } else {
+    regExpChecks['recommenderProcessing'] =
       'Подтвердите согласие на обработку персональных данных';
   }
+  if (checked.value[2]) {
+    regExpChecks['recommenderSigning'] = '';
+  } else {
+    regExpChecks['recommenderSigning'] =
+      'Подтвердите согласие на подписание договора';
+  }
 };
-

@@ -19,7 +19,7 @@
           <div class="info-section_text">
             <SvgCircle></SvgCircle>
             <p class="info-section_description">
-              Ты&nbsp;сам не&nbsp;работал в&nbsp;ПСБ в&nbsp;течение 12&nbsp;месяцев до&nbsp;рекомендации.
+              Ты&nbsp;не&nbsp;работаешь в&nbsp;ПСБ и/или ПСБ Лаб
             </p>
           </div>
           <div class="info-section_text">

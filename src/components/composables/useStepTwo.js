@@ -5,10 +5,10 @@ export const useStepTwo = (options) => {
 
   useValidateR(options);
 
-  let statusName = regExpChecks.value['recommenderNameError'];
-  let statusEmail = regExpChecks.value['recommenderEmailError'];
-  let statusPhone = regExpChecks.value['recommenderPhoneError'];
-  let statusAgreed = regExpChecks.value['recommenderAgreedError'];
+  let statusName = regExpChecks.value['recommenderName'];
+  let statusEmail = regExpChecks.value['recommenderEmail'];
+  let statusPhone = regExpChecks.value['recommenderPhone'];
+  let statusAgreed = regExpChecks.value['recommenderParticipation'];
   if (
     statusName === '' &&
     statusEmail === '' &&
