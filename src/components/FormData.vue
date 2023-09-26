@@ -26,7 +26,7 @@
                             <BaseCheckbox v-model="checked[1]" :error="regExpChecks['recommenderProcessing']"
                                 type="checkbox" id="processing">
                                 Я&nbsp;даю свое согласие на&nbsp;обработку своих персональных данных ООО &#171;ПСБ Лаб&#187;
-                                в&nbsp;ПАО &#171;Промсвязьбанк&#187;. С&nbsp;&#171;<a href="/docs/confirm_recomend.docx"
+                                и&nbsp;ПАО &#171;Промсвязьбанк&#187;. С&nbsp;&#171;<a href="/docs/confirm_recomend.docx"
                                     target="_blank" download>Согласием</a>
                                 на&nbsp;обработку персональных данных Рекомендателя Программы &#171;Приведи друга
                                 в&nbsp;ИТ&#187;&nbsp;ООО &#171;ПСБ Лаб&#187;
@@ -65,7 +65,7 @@
                             <BaseCheckbox v-model="checked[4]" :error="regExpChecks['candidateProcessing']" type="checkbox"
                                 id="candidateProcessing">
                                 Я&nbsp;даю свое согласие на&nbsp;обработку своих персональных данных ООО &#171;ПСБ
-                                Лаб&#187; в&nbsp;ПАО &#171;Промсвязьбанк&#187;. С&nbsp;&#171;<a
+                                Лаб&#187; и&nbsp;ПАО &#171;Промсвязьбанк&#187;. С&nbsp;&#171;<a
                                     href="/docs/confirm_candidate.docx" target="_blank" download>Согласием</a>
                                 на&nbsp;обработку персональных данных Кандидата Программы &#171;Приведи друга
                                 в&nbsp;ИТ&#187;&nbsp;ООО &#171;ПСБ Лаб&#187; ознакомлен
