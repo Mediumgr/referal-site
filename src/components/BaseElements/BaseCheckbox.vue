@@ -76,8 +76,8 @@ input[type='file'] {
     opacity: 0;
 }
 
-input[type='checkbox']~.checkboxLabel::before,
-input[type='file']~.fileLabel::before {
+.checkboxLabel:before,
+.fileLabel:before {
     content: " ";
     width: 40px;
     height: 40px;
@@ -147,7 +147,7 @@ input[type='checkbox']:checked~.checkboxLabel::before {
     }
 }
 
-input[type='file']~.fileLabel:before {
+.fileLabel:before {
     background-image: url('/src/assets/img/pinblack.png');
 
     @media screen and (min-width: 1920px) {

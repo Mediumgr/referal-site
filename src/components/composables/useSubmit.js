@@ -44,12 +44,12 @@ export const useSubmit = async (options) => {
   }
 
   let isError = false;
-  checked.value.some((check) => {
-    if (check === false) {
+  for (let error in regExpChecks.value) {
+    if (regExpChecks.value[error] !== '') {
       isError = true;
-      return true;
+      break;
     }
-  });
+  }
 
   if (isError === false) {
     loader.value = true;
