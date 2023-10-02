@@ -5,7 +5,9 @@
     <div class="section-steps">
       <div class="step stepOne">
         <h1 class="digit">1</h1>
-        <p class="text">Ты&nbsp;(рекомендатель) и&nbsp;твой друг (кандидат) заполняете формы</p>
+        <p class="text">
+          Ты&nbsp;(рекомендатель) и&nbsp;твой друг (кандидат) заполняете формы
+        </p>
       </div>
       <div class="step stepTwo">
         <h1 class="digit">2</h1>
@@ -17,22 +19,49 @@
       </div>
       <div class="step stepSix">
         <h1 class="digit">6</h1>
-        <p class="text">В&nbsp;течение 7&nbsp;рабочих дней после подписания договора ты&nbsp;получаешь выплату</p>
+        <p class="text">
+          В&nbsp;течение 7&nbsp;рабочих дней после подписания договора
+          ты&nbsp;получаешь выплату
+        </p>
+        <span ref="intersectionLine"></span>
       </div>
       <div class="step stepFive">
         <h1 class="digit">5</h1>
-        <p class="text">Когда друг пройдет испытательный срок, мы&nbsp;вышлем тебе электронный договор</p>
+        <p class="text">
+          Когда друг пройдет испытательный срок, мы&nbsp;вышлем тебе электронный
+          договор
+        </p>
       </div>
       <div class="step stepFour">
         <h1 class="digit">4</h1>
-        <p class="text">В&nbsp;случае успешного собеседования, твой друг трудоустраивается</p>
+        <p class="text">
+          В&nbsp;случае успешного собеседования, твой друг трудоустраивается
+        </p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import SvgAnimations from './UI/SvgAnimations.vue'
+import { onMounted, ref } from 'vue';
+import SvgAnimations from './UI/SvgAnimations.vue';
+const intersectionLine = ref('');
+
+onMounted(() => intersectionAnimation());
+
+const intersectionAnimation = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const gradientLine = document.querySelector('.animation-gradient');
+      const whiteLine = document.querySelector('.animation-white');
+      if (entry.isIntersecting) {
+        gradientLine.classList.add('svg-gradient-line-draw');
+        whiteLine.classList.add('svg-white-line-draw');
+      }
+    });
+  });
+  observer.observe(intersectionLine.value);
+};
 </script>
 
 <style lang="scss" scoped>
