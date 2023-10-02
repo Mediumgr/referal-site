@@ -186,7 +186,12 @@ const showHiddenText = (index) => {
     font-style: normal;
     font-weight: 600;
     line-height: 16px;
-    font-size: 16px;
+    font-size: 14px;
+
+    @media screen and (min-width: 390px) {
+      font-size: 16px;
+      line-height: 16px;
+    }
 
     @media screen and (min-width: 1024px) {
       font-size: 24px;
