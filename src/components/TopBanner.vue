@@ -2,29 +2,47 @@
   <div class="top-header">
     <img class="top-header_logoImage" src="../assets/img/logo.png" alt="logo" />
     <h1 class="top-header_text">Рекомендуй друга в ит получи</h1>
-    <img class="top-header_arrowImage" src="../assets/img/rightArrow.png" alt="logo" />
+    <img
+      class="top-header_arrowImage"
+      src="../assets/img/rightArrow.png"
+      alt="logo"
+    />
     <div class="top-header_costs">
       <h1 class="top-header_price">100&nbsp;000</h1>
-      <img class="top-header_image" src="../assets/img/rouble.png" alt="рублей" />
+      <img
+        class="top-header_image"
+        src="../assets/img/rouble.png"
+        alt="рублей"
+      />
     </div>
-    <img class="top-header_psbLogoImage" src="../assets/img/psblogo.png" alt="logo" />
-    <BaseButton class="custom-btn" @click="scrollTo()">Рекомендовать друга</BaseButton>
-    <img class="top-header_triangleImage" src="../assets/img/trianglelogo.png" alt="logo" />
+    <img
+      class="top-header_psbLogoImage"
+      src="../assets/img/psblogo.png"
+      alt="logo"
+    />
+    <BaseButton class="custom-btn" @click="scrollTo()"
+      >Рекомендовать друга</BaseButton
+    >
+    <img
+      class="top-header_triangleImage"
+      src="../assets/img/trianglelogo.png"
+      alt="logo"
+    />
   </div>
 </template>
 
 <script setup>
-import BaseButton from "./BaseElements/BaseButton.vue";
+import BaseButton from './BaseElements/BaseButton.vue';
 
 const scrollTo = () => {
-  let form = document.querySelector('form')
-  let offsetForm = form.getBoundingClientRect().top
+  let form = document.querySelector('form');
+  let offsetForm = form.getBoundingClientRect().top;
   let scrollToForm = offsetForm + window.scrollY;
   window.scrollTo({
     top: scrollToForm,
-    behavior: "smooth"
+    behavior: 'smooth',
   });
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -84,7 +102,7 @@ const scrollTo = () => {
   &_logoImage {
     grid-area: logo;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       width: 108px;
       height: 104px;
     }
@@ -110,7 +128,7 @@ const scrollTo = () => {
   &_arrowImage {
     grid-area: arrow;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       width: 70px;
       height: 75px;
       align-self: end;
@@ -148,7 +166,7 @@ const scrollTo = () => {
     font-weight: 500;
     grid-area: text;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       font-size: 34px;
       padding: 30px 30px 10px;
     }
@@ -173,7 +191,7 @@ const scrollTo = () => {
     display: grid;
     grid-area: costs;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       display: flex;
       justify-content: center;
     }
@@ -196,16 +214,18 @@ const scrollTo = () => {
   }
 
   &_price {
-    background: -webkit-linear-gradient(285deg,
-        #fc0 15%,
-        #ff5940 35%,
-        #7f40ff 60%);
+    background: -webkit-linear-gradient(
+      285deg,
+      #fc0 15%,
+      #ff5940 35%,
+      #7f40ff 60%
+    );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       font-size: 60px;
     }
 
@@ -225,13 +245,12 @@ const scrollTo = () => {
       font-size: 200px;
       justify-self: end;
     }
-
   }
 
   &_image {
     align-self: end;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       width: 16px;
       height: 16px;
       margin: 0 0 14px 0;
@@ -248,13 +267,12 @@ const scrollTo = () => {
       height: 32px;
       margin-bottom: 30px;
     }
-
   }
 
   &_psbLogoImage {
     grid-area: psbLogo;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       width: 130px;
       height: 125px;
     }
@@ -280,7 +298,7 @@ const scrollTo = () => {
   &_triangleImage {
     grid-area: triangle;
 
-    @media screen and (min-width : 320px) and (max-width: 374.98px) {
+    @media screen and (min-width: 320px) and (max-width: 374.98px) {
       width: 93px;
       height: 93px;
       align-self: end;
@@ -313,7 +331,7 @@ const scrollTo = () => {
   grid-area: btn;
   align-self: center;
 
-  @media screen and (min-width : 320px) and (max-width: 374.98px) {
+  @media screen and (min-width: 320px) and (max-width: 374.98px) {
     font-size: 14px;
     padding: 22px 26px;
     margin: 37px 0 50px 0;

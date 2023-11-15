@@ -188,7 +188,7 @@
       </transition>
     </Teleport>
     <footer class="footer">
-      Юридический дисклеймер:
+      Акция действует до 31.12.2023 <br> Юридический дисклеймер:
       <a href="/docs/rules.docx" class="link" target="_blank" download
         >Правила программы</a
       >,

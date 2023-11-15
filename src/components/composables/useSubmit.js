@@ -72,11 +72,28 @@ export const useSubmit = async (options) => {
     });
 
     let response = await res.json();
+    // маркер достижения Цели Я.Метрика
+    // see: https://yandex.ru/support/metrica/general/goal-js-event.html
 
     if (response.error === true) {
       message.value = response.message;
+    } else {
+      console.log('yaReachGoal invoke');
+      yaReachGoal('target');
     }
+
     open.value = true;
     loader.value = false;
+  }
+};
+
+const yaReachGoal = (idTarget) => {
+  if (typeof ym == 'function') {
+    try {
+      ym(95461603, 'reachGoal', idTarget);
+      console.log('ReachGoal push');
+    } catch (e) {
+      console.log('ReachGoal error', e);
+    }
   }
 };
