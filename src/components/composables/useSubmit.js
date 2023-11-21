@@ -55,7 +55,7 @@ export const useSubmit = async (options) => {
     loader.value = true;
     let agreementSign = checked.value[2] === true ? 1 : 0;
 
-    let { utmMedium, utmSource, utmCampaign } = extractUTMParams(
+    let { utmMedium, utmSource, utmCampaign, clickId } = extractUTMParams(
       window.location.search
     );
 
@@ -72,6 +72,7 @@ export const useSubmit = async (options) => {
     formData.append('utm[utm_source]', utmSource);
     formData.append('utm[utm_medium]', utmMedium);
     formData.append('utm[utm_campaign]', utmCampaign);
+    formData.append('click_id', clickId);
 
     let res = await fetch('/upload/', {
       method: 'POST',
@@ -108,8 +109,10 @@ const extractUTMParams = (params) => {
   let utmMedium = urlParams.get('utm_medium');
   let utmSource = urlParams.get('utm_source');
   let utmCampaign = urlParams.get('utm_campaign');
+  let clickId = urlParams.get('click_id');
   utmMedium === null ? (utmMedium = '') : utmMedium;
   utmSource === null ? (utmSource = '') : utmSource;
   utmCampaign === null ? (utmCampaign = '') : utmCampaign;
-  return { utmMedium, utmSource, utmCampaign };
+  clickId === null ? (clickId = '') : clickId;
+  return { utmMedium, utmSource, utmCampaign, clickId };
 };
