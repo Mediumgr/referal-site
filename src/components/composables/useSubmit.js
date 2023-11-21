@@ -55,6 +55,10 @@ export const useSubmit = async (options) => {
     loader.value = true;
     let agreementSign = checked.value[2] === true ? 1 : 0;
 
+    let { utmMedium, utmSource, utmCampaign } = extractUTMParams(
+      window.location.search
+    );
+
     let formData = new FormData();
 
     formData.append('recommender[NAME]', recommenderName.value);
@@ -65,6 +69,9 @@ export const useSubmit = async (options) => {
     formData.append('candidate[PHONE]', candidatePhone.value);
     formData.append('userfile', file.value.file);
     formData.append('recommender[check_order]', agreementSign);
+    formData.append('utm[utm_source]', utmSource);
+    formData.append('utm[utm_medium]', utmMedium);
+    formData.append('utm[utm_campaign]', utmCampaign);
 
     let res = await fetch('/upload/', {
       method: 'POST',
@@ -72,13 +79,11 @@ export const useSubmit = async (options) => {
     });
 
     let response = await res.json();
-    // маркер достижения Цели Я.Метрика
-    // see: https://yandex.ru/support/metrica/general/goal-js-event.html
 
     if (response.error === true) {
       message.value = response.message;
     } else {
-      console.log('yaReachGoal invoke');
+      console.log('yaReachGoal invoked');
       yaReachGoal('target');
     }
 
@@ -96,4 +101,15 @@ const yaReachGoal = (idTarget) => {
       console.log('ReachGoal error', e);
     }
   }
+};
+
+const extractUTMParams = (params) => {
+  let urlParams = new URLSearchParams(params);
+  let utmMedium = urlParams.get('utm_medium');
+  let utmSource = urlParams.get('utm_source');
+  let utmCampaign = urlParams.get('utm_campaign');
+  utmMedium === null ? (utmMedium = '') : utmMedium;
+  utmSource === null ? (utmSource = '') : utmSource;
+  utmCampaign === null ? (utmCampaign = '') : utmCampaign;
+  return { utmMedium, utmSource, utmCampaign };
 };
